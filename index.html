@@ -1338,8 +1338,8 @@ section{padding:80px 52px}
   <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:48px">
     <div><a class="logo" onclick="goLanding()" style="display:block;margin-bottom:12px;color:#f9f7f4">Skill<em>Swap</em></a><p style="font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;max-width:240px">The peer-to-peer skill marketplace where knowledge is the only currency.</p></div>
     <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Platform</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="smoothTo('search')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Browse Skills</a></li><li><a onclick="openModal('mOnboard')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">List a Skill</a></li><li><a onclick="smoothTo('how')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">How It Works</a></li></ul></div>
-    <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Community</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="smoothTo('community')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Top Traders</a></li><li><a onclick="showToast('Blog coming soon!')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Blog</a></li><li><a onclick="showToast('Discord invite copied!')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Discord</a></li></ul></div>
-    <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Company</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="showToast('About page coming soon!')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">About Us</a></li><li><a onclick="showToast('Privacy policy opening…')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Privacy Policy</a></li><li><a onclick="openContactModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Contact</a></li></ul></div>
+    <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Community</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="smoothTo('community')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Top Traders</a></li><li><a onclick="openBlogModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Blog</a></li><li><a onclick="openDiscordModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Discord</a></li></ul></div>
+    <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Company</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="openAboutModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">About Us</a></li><li><a onclick="openPrivacyModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Privacy Policy</a></li><li><a onclick="openContactModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Contact</a></li></ul></div>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)">
     <div style="font-size:.76rem;color:rgba(255,255,255,.28)">© 2026 SkillSwap · Built with knowledge, not capital</div>
@@ -2941,65 +2941,14 @@ const THREADS = {}; // message threads loaded when user connects
 
 let activePerson = null;
 
-function renderCommunity(){
-  const list = document.getElementById('commPeopleList');
-  list.innerHTML = PEOPLE.map(p=>`
-    <div class="comm-person" data-id="${p.id}" onclick="openChat(${p.id})">
-      <div class="cp-av" style="background:${p.col}">${p.av}${p.online?'<div class="cp-online"></div>':''}</div>
-      <div class="cp-info">
-        <div class="cp-name">${p.name}</div>
-        <div class="cp-preview">${p.preview}</div>
-      </div>
-      <div class="cp-meta">
-        <span class="cp-time">${p.unread>0?'now':''}</span>
-        ${p.unread>0?`<span class="cp-unread">${p.unread}</span>`:''}
-      </div>
-    </div>`).join('');
-  // show badge on tab
-  const totalUnread = PEOPLE.reduce((s,p)=>s+p.unread,0);
-  const badge = document.getElementById('msgBadge');
-  if(badge){ badge.textContent=totalUnread; badge.style.display=totalUnread>0?'inline':'none'; }
-}
 
-function filterPeople(q){
-  document.querySelectorAll('.comm-person').forEach(el=>{
-    const name = el.querySelector('.cp-name').textContent.toLowerCase();
-    el.style.display = (!q||name.includes(q.toLowerCase())) ? '' : 'none';
-  });
-}
-
-function openChat(id){
-  activePerson = PEOPLE.find(p=>p.id===id);
-  if(!activePerson) return;
-  // clear unread
-  activePerson.unread = 0;
-  renderCommunity();
-  // mark active
-  document.querySelectorAll('.comm-person').forEach(el=>el.classList.toggle('active', el.dataset.id==id));
-  // show chat
-  document.getElementById('commEmpty').style.display='none';
-  document.getElementById('commChatInner').style.display='flex';
-  // header
-  document.getElementById('commChatHeader').innerHTML=`
-    <div class="chat-hdr-av" style="background:${activePerson.col}">${activePerson.av}</div>
-    <div>
-      <div class="chat-hdr-name">${activePerson.name}</div>
-      <div class="chat-hdr-skill">Offers: ${activePerson.skill} · ${activePerson.online?'<span style="color:#22c55e">● Online</span>':'Offline'}</div>
-    </div>
-    <div class="chat-hdr-actions">
-      <button class="chat-hdr-btn" onclick="viewProfile(${id})">View Profile</button>
-      <button class="chat-hdr-btn primary" onclick="proposeSwap(${id})">Propose Swap ⇄</button>
-    </div>`;
-  renderMessages(id);
-  // focus input
-  setTimeout(()=>document.getElementById('commMsgInput').focus(),100);
-}
 
 function renderMessages(id){
   const msgs = THREADS[id]||[];
   const u = APP.user;
-  const p = PEOPLE.find(x=>x.id===id);
+  const p = activePerson || PEOPLE.find(x=>x.id===id) || { col:'#6b7280', av:'??' };
   const el = document.getElementById('commMessages');
+  if(!el) return;
   if(msgs.length===0){
     el.innerHTML=`<div style="text-align:center;color:var(--t3);font-size:.84rem;padding:32px 0">No messages yet. Say hello! 👋</div>`;
     return;
@@ -3015,7 +2964,9 @@ function renderMessages(id){
         </div>
       </div>`;
     const isMe = m.from==='me';
-    const av = isMe ? `<div class="msg-av" style="background:var(--accent)">${u?u.initials:'ME'}</div>` : `<div class="msg-av" style="background:${p.col}">${p.av}</div>`;
+    const av = isMe
+      ? `<div class="msg-av" style="background:var(--accent)">${u?u.initials:'ME'}</div>`
+      : `<div class="msg-av" style="background:${p.col}">${p.av}</div>`;
     return `<div class="msg ${isMe?'mine':''}">
       ${av}
       <div class="msg-wrap">
@@ -3150,8 +3101,8 @@ function doLogout(){
             <h4 style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#334155;margin-bottom:14px">Community</h4>
             <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
               <li><a onclick="goLanding();setTimeout(()=>smoothTo('community'),200)" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Top Traders</a></li>
-              <li><a onclick="showToast('Blog coming soon!')" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Blog</a></li>
-              <li><a onclick="showToast('Discord invite copied!')" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Discord</a></li>
+              <li><a onclick="openBlogModal()" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Blog</a></li>
+              <li><a onclick="openDiscordModal()" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Discord</a></li>
             </ul>
           </div>
 
@@ -3159,8 +3110,8 @@ function doLogout(){
           <div>
             <h4 style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#334155;margin-bottom:14px">Company</h4>
             <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
-              <li><a onclick="showToast('About page coming soon!')" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">About Us</a></li>
-              <li><a onclick="showToast('Privacy policy opening…')" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Privacy Policy</a></li>
+              <li><a onclick="openAboutModal()" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">About Us</a></li>
+              <li><a onclick="openPrivacyModal()" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Privacy Policy</a></li>
               <li><a onclick="goLanding();setTimeout(()=>openContactModal(),200)" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Contact</a></li>
             </ul>
           </div>
@@ -4502,6 +4453,228 @@ function subscribeNewsletter(){
   localStorage.setItem('ss_newsletter', JSON.stringify(subs));
   inp.value = '';
   showToast('✓ Subscribed! We\'ll notify you when new skills drop.');
+}
+
+/* ════════════════ ADMIN UTILITY FUNCTIONS ════════════════ */
+
+function refreshAdminData(){
+  renderAdminUsers();
+  renderAdminMedia();
+  renderAnnouncements();
+  updateAdmStats();
+  // Update live counters
+  const tuEl = document.getElementById('admStatUsers');
+  if(tuEl) tuEl.textContent = USER_REGISTRY.length;
+  const subs = JSON.parse(localStorage.getItem('ss_newsletter')||'[]');
+  const nlEl = document.getElementById('admNlCount');
+  if(nlEl) nlEl.textContent = subs.length + ' subscribers';
+  showToast('✓ Data refreshed! ' + USER_REGISTRY.length + ' users · ' + subs.length + ' newsletter subs');
+}
+
+function exportUserData(){
+  if(USER_REGISTRY.length === 0){
+    showToast('⚠ No user data to export yet.');
+    return;
+  }
+  const headers = ['Name','Email','Primary Skill','Workspace ID','Joined','Last Login','Status','Skills Count'];
+  const rows = USER_REGISTRY.map(u=>[
+    '"'+(u.name||'')     +'"',
+    '"'+(u.email||'')    +'"',
+    '"'+(u.primarySkill||'')+'"',
+    '"'+(u.workspaceId||'')+'"',
+    '"'+(u.joinedAt ? new Date(u.joinedAt).toLocaleDateString() : '')+'"',
+    '"'+(u.lastLogin ? new Date(u.lastLogin).toLocaleDateString() : '')+'"',
+    '"'+(u.status||'active')+'"',
+    (u.skills||[]).length,
+  ].join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'skillswap_users_' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+  showToast('✓ Exported ' + USER_REGISTRY.length + ' users as CSV!');
+}
+
+function resetPlatformData(){
+  if(!confirm('This will delete ALL user accounts, media, and announcements from this browser. This cannot be undone.\n\nType OK to confirm.')) return;
+  localStorage.removeItem('ss_users');
+  localStorage.removeItem('ss_newsletter');
+  localStorage.removeItem('ss_contacts');
+  USER_REGISTRY.length = 0;
+  ADM_MEDIA.length = 0;
+  ADM_ANNOUNCE.length = 0;
+  renderAdminUsers();
+  renderAdminMedia();
+  renderAnnouncements();
+  updateAdmStats();
+  showToast('✓ Platform data has been reset.');
+}
+
+function toggleAdmFeature(el, feature){
+  const track = el.querySelector('.adm-toggle-track');
+  const isOn = track.classList.toggle('on');
+  showToast((isOn ? '✓ ' : '✗ ') + feature.charAt(0).toUpperCase()+feature.slice(1) + ' ' + (isOn?'enabled':'disabled'));
+}
+
+/* ════════════════ COMMUNITY — REAL USERS ════════════════ */
+function renderCommunity(){
+  const list = document.getElementById('commPeopleList');
+  if(!list) return;
+
+  // Build people list from USER_REGISTRY (other users) + PEOPLE array
+  const colors = ['#d94f0a','#1e40af','#5b21b6','#166534','#92400e','#0e7490','#be123c','#065f46'];
+  const registryPeople = USER_REGISTRY
+    .filter(u => u.email !== (APP.user && APP.user.email))
+    .map((u,i) => ({
+      id:      'reg_'+i,
+      name:    u.name,
+      av:      u.initials || u.name.slice(0,2).toUpperCase(),
+      col:     colors[i % colors.length],
+      skill:   u.primarySkill || 'General',
+      online:  Math.random() > 0.5,
+      unread:  0,
+      preview: 'Member since ' + (u.joinedAt ? new Date(u.joinedAt).toLocaleDateString() : 'recently'),
+    }));
+
+  const allPeople = [...PEOPLE, ...registryPeople];
+
+  if(allPeople.length === 0){
+    list.innerHTML = `<div style="padding:32px 20px;text-align:center;color:var(--t3);font-size:.84rem;line-height:1.65">
+      <div style="font-size:2rem;margin-bottom:10px">👥</div>
+      No other members yet.<br>Be the first to connect!
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = allPeople.map(p=>`
+    <div class="comm-person" data-id="${p.id}" onclick="openChatDynamic('${p.id}','${p.name}','${p.av}','${p.col}','${p.skill}')">
+      <div class="cp-av" style="background:${p.col}">${p.av}${p.online?'<div class="cp-online"></div>':''}</div>
+      <div class="cp-info">
+        <div class="cp-name">${p.name}</div>
+        <div class="cp-preview">${p.preview || p.skill}</div>
+      </div>
+      <div class="cp-meta">
+        ${p.unread>0?`<span class="cp-unread">${p.unread}</span>`:''}
+      </div>
+    </div>`).join('');
+
+  const totalUnread = allPeople.reduce((s,p)=>s+(p.unread||0),0);
+  const badge = document.getElementById('msgBadge');
+  if(badge){ badge.textContent=totalUnread; badge.style.display=totalUnread>0?'inline':'none'; }
+}
+
+function filterPeople(q){
+  document.querySelectorAll('.comm-person').forEach(el=>{
+    const name = el.querySelector('.cp-name')?.textContent.toLowerCase()||'';
+    el.style.display = (!q||name.includes(q.toLowerCase())) ? '' : 'none';
+  });
+}
+
+function openChatDynamic(id, name, av, col, skill){
+  // Build a temporary person object
+  const person = PEOPLE.find(p=>p.id==id) || { id, name, av, col, skill, online:true, unread:0, preview:'' };
+  activePerson = person;
+  activePerson.unread = 0;
+
+  document.querySelectorAll('.comm-person').forEach(el=>el.classList.toggle('active', el.dataset.id==id));
+  document.getElementById('commEmpty').style.display='none';
+  document.getElementById('commChatInner').style.display='flex';
+
+  const hdr = document.getElementById('commChatHdr');
+  if(hdr) hdr.innerHTML = `
+    <div class="chat-hdr-av" style="background:${col}">${av}</div>
+    <div>
+      <div class="chat-hdr-name">${name}</div>
+      <div class="chat-hdr-skill">${skill} · ${person.online?'<span style="color:var(--green)">●</span> Online':'Offline'}</div>
+    </div>
+    <button onclick="requestSwap('${skill}','${name}')" style="margin-left:auto;background:var(--accent);color:#fff;border:none;padding:7px 14px;border-radius:var(--r-sm);font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif">Propose Swap</button>`;
+
+  if(!THREADS[id]) THREADS[id] = [];
+  renderMessages(id);
+}
+
+/* ════════════════ BLOG / ABOUT / PRIVACY MODALS ════════════════ */
+function openBlogModal(){
+  showInfoModal('📝 SkillSwap Blog',
+  `<p style="color:var(--t2);line-height:1.75;margin-bottom:16px">The SkillSwap blog is where we share stories from our community — skill traders, success swaps, and tips for getting the most out of your learning journey.</p>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:16px">
+      <div style="font-weight:700;font-size:.9rem;color:var(--dark);margin-bottom:4px">🎯 How I Learned Guitar by Teaching Python</div>
+      <div style="font-size:.78rem;color:var(--t3)">Community · 3 min read</div>
+    </div>
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:16px">
+      <div style="font-weight:700;font-size:.9rem;color:var(--dark);margin-bottom:4px">💡 5 Tips for a Successful First Swap</div>
+      <div style="font-size:.78rem;color:var(--t3)">Tips · 4 min read</div>
+    </div>
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:16px">
+      <div style="font-weight:700;font-size:.9rem;color:var(--dark);margin-bottom:4px">🌍 SkillSwap Goes Global — 40+ Countries</div>
+      <div style="font-size:.78rem;color:var(--t3)">News · 2 min read</div>
+    </div>
+  </div>`);
+}
+
+function openAboutModal(){
+  showInfoModal('About SkillSwap',
+  `<div style="text-align:center;margin-bottom:24px">
+    <div style="font-size:3rem;margin-bottom:10px">⇄</div>
+    <p style="font-size:.95rem;color:var(--t2);line-height:1.75;max-width:400px;margin:0 auto">SkillSwap was built on a simple idea — everyone knows something worth teaching, and everyone wants to learn something new. Why pay, when you can trade?</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:6px">🌍</div><div style="font-weight:700;font-size:.88rem;color:var(--dark)">Global Community</div><div style="font-size:.76rem;color:var(--t3)">Traders in 40+ countries</div></div>
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:6px">🆓</div><div style="font-weight:700;font-size:.88rem;color:var(--dark)">Always Free</div><div style="font-size:.76rem;color:var(--t3)">No commissions, ever</div></div>
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:6px">🔒</div><div style="font-weight:700;font-size:.88rem;color:var(--dark)">Safe & Trusted</div><div style="font-size:.76rem;color:var(--t3)">Verified profiles & reviews</div></div>
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:6px">⭐</div><div style="font-weight:700;font-size:.88rem;color:var(--dark)">Quality First</div><div style="font-size:.76rem;color:var(--t3)">Ratings after every swap</div></div>
+  </div>`);
+}
+
+function openPrivacyModal(){
+  showInfoModal('Privacy Policy',
+  `<div style="color:var(--t2);font-size:.86rem;line-height:1.75;max-height:320px;overflow-y:auto;padding-right:4px">
+    <p style="margin-bottom:12px"><strong style="color:var(--dark)">What we collect:</strong> Your name, email address, selected skills, and activity within the platform.</p>
+    <p style="margin-bottom:12px"><strong style="color:var(--dark)">How we use it:</strong> To match you with skill traders, personalise your workspace, and improve the platform.</p>
+    <p style="margin-bottom:12px"><strong style="color:var(--dark)">Storage:</strong> Your data is stored locally in your browser (localStorage) and optionally on our backend if you use email signup.</p>
+    <p style="margin-bottom:12px"><strong style="color:var(--dark)">Sharing:</strong> We never sell your data. We never share it with third parties except where required by law.</p>
+    <p style="margin-bottom:12px"><strong style="color:var(--dark)">Deletion:</strong> You can delete your account at any time from your profile settings. All data will be permanently removed.</p>
+    <p style="margin-bottom:12px"><strong style="color:var(--dark)">Cookies:</strong> We only use essential cookies for authentication. No tracking or advertising cookies.</p>
+    <p style="color:var(--t3);font-size:.76rem;margin-top:16px">Last updated: March 2026 · contact@skillswap.com</p>
+  </div>`);
+}
+
+function openDiscordModal(){
+  showInfoModal('Join our Discord',
+  `<div style="text-align:center">
+    <div style="font-size:3rem;margin-bottom:14px">💬</div>
+    <p style="font-size:.95rem;color:var(--t2);line-height:1.7;margin-bottom:20px">Connect with thousands of skill traders in our Discord community. Share tips, find swap partners, and get help.</p>
+    <div style="background:var(--bg2);border-radius:var(--r-sm);padding:16px;margin-bottom:20px;font-family:monospace;font-size:.9rem;color:var(--dark);letter-spacing:.05em">discord.gg/skillswap</div>
+    <button class="modal-btn" onclick="navigator.clipboard.writeText('discord.gg/skillswap').then(()=>showToast('✓ Invite link copied!'));closeInfoModal()">Copy Invite Link</button>
+  </div>`);
+}
+
+function showInfoModal(title, html){
+  let modal = document.getElementById('mInfoModal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'mInfoModal';
+    modal.className = 'overlay';
+    modal.innerHTML = `<div class="modal" style="max-width:500px">
+      <button class="modal-close" onclick="closeInfoModal()">×</button>
+      <h3 id="infoModalTitle"></h3>
+      <div id="infoModalBody" style="margin-top:12px"></div>
+    </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', e=>{ if(e.target===modal) closeInfoModal(); });
+  }
+  document.getElementById('infoModalTitle').textContent = title;
+  document.getElementById('infoModalBody').innerHTML = html;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInfoModal(){
+  const m = document.getElementById('mInfoModal');
+  if(m) m.style.display = 'none';
+  document.body.style.overflow = '';
 }
 
 /* ════════════════ STARTUP HOOKS ════════════════ */
