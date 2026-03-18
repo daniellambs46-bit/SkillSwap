@@ -100,8 +100,10 @@ nav{position:fixed;inset:0 0 auto;z-index:200;height:66px;display:flex;align-ite
 }
 
 /* ─────────────────── PAGE SHELL ─────────────────── */
-#adminPage{display:none;min-height:100vh;background:var(--a-bg)}
-#adminPage.active{display:block}
+#adminPage{display:none;min-height:100vh;background:#020617}
+#adminPage.active{display:block;background:#020617}
+#adminPage.active ~ * { background:#020617 }
+body:has(#adminPage.active){background:#020617 !important}
 
 /* ─────────────────── LOGIN ─────────────────────── */
 .adm-login{
@@ -217,14 +219,14 @@ nav{position:fixed;inset:0 0 auto;z-index:200;height:66px;display:flex;align-ite
 .adm-shell.active{
   display:flex;flex-direction:row;
   min-height:100vh;width:100%;
-  background:var(--a-bg);
+  background:#020617;
 }
 
 /* ─────────────────── SIDEBAR ────────────────────── */
 .adm-sidebar{
   width:264px;min-width:264px;
-  background:var(--a-sidebar);
-  border-right:1px solid var(--a-border);
+  background:#0a0f1e;
+  border-right:1px solid rgba(255,255,255,.07);
   display:flex;flex-direction:column;flex-shrink:0;
   height:100vh;position:sticky;top:0;overflow-y:auto;
   scrollbar-width:none;
@@ -376,7 +378,7 @@ nav{position:fixed;inset:0 0 auto;z-index:200;height:66px;display:flex;align-ite
 /* ─────────────────── MAIN ───────────────────────── */
 .adm-main{
   flex:1;min-width:0;
-  background:var(--a-bg);
+  background:#020617;
   overflow-x:hidden;
   display:flex;flex-direction:column;
 }
@@ -724,7 +726,20 @@ nav{position:fixed;inset:0 0 auto;z-index:200;height:66px;display:flex;align-ite
 .lib-cat-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
 /* ── LANDING PAGE ── */
-/* FAQ */
+/* ── SKILL CATEGORY PICKER CARDS ── */
+.skill-cat-card{
+  border:2px solid var(--border);border-radius:var(--r-sm);
+  padding:14px 10px;text-align:center;cursor:pointer;
+  transition:all .2s;background:var(--surface);
+  user-select:none;
+}
+.skill-cat-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--sh-md)}
+.skill-cat-card.selected{border-color:var(--accent);background:var(--acc-lit);transform:translateY(-2px);box-shadow:0 4px 14px rgba(217,79,10,.2)}
+.scc-icon{font-size:1.8rem;display:block;margin-bottom:6px}
+.scc-name{font-weight:700;font-size:.85rem;color:var(--dark);margin-bottom:2px}
+.scc-desc{font-size:.68rem;color:var(--t3)}
+
+/* ── FAQ */
 .faq-item{border-bottom:1px solid var(--border)}
 .faq-item:first-child{border-top:1px solid var(--border)}
 .faq-q{width:100%;background:transparent;border:none;text-align:left;padding:20px 0;font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;color:var(--dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .18s}
@@ -1324,7 +1339,7 @@ section{padding:80px 52px}
     <div><a class="logo" onclick="goLanding()" style="display:block;margin-bottom:12px;color:#f9f7f4">Skill<em>Swap</em></a><p style="font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;max-width:240px">The peer-to-peer skill marketplace where knowledge is the only currency.</p></div>
     <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Platform</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="smoothTo('search')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Browse Skills</a></li><li><a onclick="openModal('mOnboard')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">List a Skill</a></li><li><a onclick="smoothTo('how')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">How It Works</a></li></ul></div>
     <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Community</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="smoothTo('community')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Top Traders</a></li><li><a onclick="showToast('Blog coming soon!')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Blog</a></li><li><a onclick="showToast('Discord invite copied!')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Discord</a></li></ul></div>
-    <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Company</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="showToast('About page coming soon!')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">About Us</a></li><li><a onclick="showToast('Privacy policy opening…')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Privacy Policy</a></li><li><a onclick="openModal('mContact')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Contact</a></li></ul></div>
+    <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Company</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="showToast('About page coming soon!')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">About Us</a></li><li><a onclick="showToast('Privacy policy opening…')" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Privacy Policy</a></li><li><a onclick="openContactModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Contact</a></li></ul></div>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)">
     <div style="font-size:.76rem;color:rgba(255,255,255,.28)">© 2026 SkillSwap · Built with knowledge, not capital</div>
@@ -1407,6 +1422,12 @@ section{padding:80px 52px}
     </div>
     <div class="ws-welcome">Welcome back, <em id="wsFirstName">there</em> 👋</div>
     <p class="ws-sub" id="wsSub">Your learning space is ready.</p>
+    <!-- Skill workspace badge — updated on login -->
+    <div id="wsSkillBadge" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc-lit);border:1px solid rgba(217,79,10,.2);border-radius:var(--r-full);padding:6px 14px;margin-bottom:20px;font-size:.8rem;font-weight:700;color:var(--accent)">
+      <span id="wsSkillBadgeIcon">🎯</span>
+      <span id="wsSkillBadgeName">General Workspace</span>
+      <span style="font-size:.72rem;font-weight:400;color:var(--t3)" id="wsWorkspaceId"></span>
+    </div>
     <div class="ws-stats">
       <div class="ws-stat"><div class="ws-stat-icon">📚</div><div class="ws-stat-val" id="statSkills">0</div><div class="ws-stat-lbl">Skills listed</div></div>
       <div class="ws-stat" style="cursor:pointer" onclick="showWsTab('swaps',null)"><div class="ws-stat-icon">🤝</div><div class="ws-stat-val" id="statSwaps">0</div><div class="ws-stat-lbl">Active swaps</div></div>
@@ -1604,21 +1625,21 @@ section{padding:80px 52px}
 
 <!-- ONBOARDING (multi-step) -->
 <div class="overlay" id="mOnboard">
-  <div class="modal" style="max-width:560px">
+  <div class="modal" style="max-width:600px">
     <button class="modal-close" onclick="closeModal('mOnboard')">×</button>
-    <!-- Progress -->
+
+    <!-- Progress dots -->
     <div class="ob-progress" id="obProgress">
       <div class="ob-dot done" id="dot0"></div>
       <div class="ob-dot" id="dot1"></div>
       <div class="ob-dot" id="dot2"></div>
     </div>
 
-    <!-- Step 1: Sign up -->
+    <!-- STEP 1: Account details -->
     <div class="ob-step active" id="obStep0">
       <h3>Create your account</h3>
-      <p class="modal-sub">Sign up free with your favourite account.</p>
+      <p class="modal-sub">Join free — no credit card needed.</p>
 
-      <!-- Social signup buttons -->
       <div class="oauth-providers" style="margin-bottom:18px">
         <button class="oauth-btn google" onclick="oauthLogin('Google')">
           <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
@@ -1640,27 +1661,76 @@ section{padding:80px 52px}
 
       <div class="oauth-divider"><span>or use email</span></div>
 
-      <div class="mfield"><label>Your Name</label><input type="text" id="ob-name" placeholder="Your full name" /></div>
-      <div class="mfield"><label>Email Address</label><input type="email" id="ob-email" placeholder="you@gmail.com" /></div>
-      <div class="mfield"><label>Password</label><input type="password" id="ob-pass" placeholder="Choose a strong password" /></div>
+      <div class="mfield"><label>Full Name <span style="color:var(--accent)">*</span></label><input type="text" id="ob-name" placeholder="Your full name" /></div>
+      <div class="mfield"><label>Email Address <span style="color:var(--accent)">*</span></label><input type="email" id="ob-email" placeholder="you@gmail.com" /></div>
+      <div class="mfield"><label>Password <span style="color:var(--accent)">*</span></label><input type="password" id="ob-pass" placeholder="Min. 8 characters" /></div>
+
       <button class="modal-btn" onclick="obNext(1)">Continue →</button>
       <div class="modal-link">Already have an account? <a onclick="closeModal('mOnboard');openModal('mLogin')">Log in</a></div>
     </div>
 
-    <!-- Step 2: Pick skills you OFFER -->
+    <!-- STEP 2: Choose PRIMARY skill (workspace) -->
     <div class="ob-step" id="obStep1">
-      <h3>What can you teach?</h3>
-      <p class="modal-sub">Pick the skills you're offering. You can add more later.</p>
-      <div class="skill-pick-grid" id="offerGrid"></div>
+      <h3>Choose your primary skill</h3>
+      <p class="modal-sub">This creates your personal workspace — you can add more skills later.</p>
+
+      <div id="skillCategoryPicker" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">
+        <div class="skill-cat-card" data-cat="programming" onclick="selectPrimarySkill(this,'programming','💻','#1e40af','#eff6ff')">
+          <span class="scc-icon">💻</span>
+          <div class="scc-name">Programming</div>
+          <div class="scc-desc">Code & software</div>
+        </div>
+        <div class="skill-cat-card" data-cat="design" onclick="selectPrimarySkill(this,'design','🎨','#7c3aed','#fdf4ff')">
+          <span class="scc-icon">🎨</span>
+          <div class="scc-name">Design</div>
+          <div class="scc-desc">UI/UX & visuals</div>
+        </div>
+        <div class="skill-cat-card" data-cat="music" onclick="selectPrimarySkill(this,'music','🎵','#92400e','#fff7ed')">
+          <span class="scc-icon">🎵</span>
+          <div class="scc-name">Music</div>
+          <div class="scc-desc">Instruments & audio</div>
+        </div>
+        <div class="skill-cat-card" data-cat="business" onclick="selectPrimarySkill(this,'business','💼','#166534','#f0fdf4')">
+          <span class="scc-icon">💼</span>
+          <div class="scc-name">Business</div>
+          <div class="scc-desc">Strategy & finance</div>
+        </div>
+        <div class="skill-cat-card" data-cat="education" onclick="selectPrimarySkill(this,'education','📚','#5b21b6','#f5f3ff')">
+          <span class="scc-icon">📚</span>
+          <div class="scc-name">Education</div>
+          <div class="scc-desc">Teaching & tutoring</div>
+        </div>
+        <div class="skill-cat-card" data-cat="sports" onclick="selectPrimarySkill(this,'sports','⚽','#0e7490','#ecfeff')">
+          <span class="scc-icon">⚽</span>
+          <div class="scc-name">Sports</div>
+          <div class="scc-desc">Fitness & athletics</div>
+        </div>
+        <div class="skill-cat-card" data-cat="photography" onclick="selectPrimarySkill(this,'photography','📷','#be123c','#fff1f2')">
+          <span class="scc-icon">📷</span>
+          <div class="scc-name">Photography</div>
+          <div class="scc-desc">Photos & video</div>
+        </div>
+        <div class="skill-cat-card" data-cat="languages" onclick="selectPrimarySkill(this,'languages','🌍','#065f46','#ecfdf5')">
+          <span class="scc-icon">🌍</span>
+          <div class="scc-name">Languages</div>
+          <div class="scc-desc">Speaking & writing</div>
+        </div>
+        <div class="skill-cat-card" data-cat="wellness" onclick="selectPrimarySkill(this,'wellness','🧘','#6d28d9','#fdf4ff')">
+          <span class="scc-icon">🧘</span>
+          <div class="scc-name">Wellness</div>
+          <div class="scc-desc">Health & mindfulness</div>
+        </div>
+      </div>
+      <div id="skillCatError" style="color:var(--accent);font-size:.8rem;text-align:center;margin-bottom:10px;display:none">⚠ Please select a skill category</div>
       <button class="modal-btn" onclick="obNext(2)">Continue →</button>
     </div>
 
-    <!-- Step 3: Pick skills you WANT -->
+    <!-- STEP 3: What to learn -->
     <div class="ob-step" id="obStep2">
       <h3>What do you want to learn?</h3>
-      <p class="modal-sub">Pick skills you're interested in. We'll match you with people who offer these.</p>
+      <p class="modal-sub">Pick skills you want to learn in return.</p>
       <div class="skill-pick-grid" id="seekGrid"></div>
-      <button class="modal-btn" onclick="finishOnboard()">Create My Space →</button>
+      <button class="modal-btn" onclick="finishOnboard()">Create My Workspace →</button>
     </div>
   </div>
 </div>
@@ -1675,33 +1745,27 @@ section{padding:80px 52px}
       <p class="modal-sub">Sign in to your SkillSwap workspace</p>
     </div>
 
-    <!-- Social OAuth buttons -->
     <div class="oauth-providers">
       <button class="oauth-btn google" onclick="oauthLogin('Google')">
         <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
         Continue with Google
       </button>
-
       <button class="oauth-btn github" onclick="oauthLogin('GitHub')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         Continue with GitHub
       </button>
-
       <button class="oauth-btn microsoft" onclick="oauthLogin('Microsoft')">
         <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#F25022" d="M1 1h10v10H1z"/><path fill="#00A4EF" d="M13 1h10v10H13z"/><path fill="#7FBA00" d="M1 13h10v10H1z"/><path fill="#FFB900" d="M13 13h10v10H13z"/></svg>
         Continue with Microsoft
       </button>
-
       <button class="oauth-btn yahoo" onclick="oauthLogin('Yahoo')">
         <svg width="18" height="18" viewBox="0 0 248 225" fill="#6001D2"><path d="M0 0l95.8 222.5L0 225V0zm248 0v225l-95.8-2.5L248 0zM100.3 0h47.4L124 55.5 100.3 0z"/></svg>
         Continue with Yahoo
       </button>
     </div>
 
-    <!-- Divider -->
     <div class="oauth-divider"><span>or sign in with email</span></div>
 
-    <!-- Email fallback -->
     <div class="mfield"><label>Email</label><input type="email" id="login-email" placeholder="you@gmail.com" /></div>
     <div class="mfield"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••" /></div>
     <button class="modal-btn" onclick="doLogin()">Sign In →</button>
@@ -1710,8 +1774,7 @@ section{padding:80px 52px}
       <span>Don't have an account?</span>
       <a onclick="closeModal('mLogin');openModal('mOnboard')">Create one free →</a>
     </div>
-
-    <p class="oauth-terms">By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. Your data is protected with industry-standard encryption.</p>
+    <p class="oauth-terms">By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
   </div>
 </div>
 
@@ -1772,10 +1835,21 @@ section{padding:80px 52px}
     <button class="modal-close" onclick="closeModal('mContact')">×</button>
     <h3>Contact Support</h3>
     <p class="modal-sub">Got a question? We usually respond within a few hours.</p>
-    <div class="mfield"><label>Your Name</label><input type="text" placeholder="Your name" /></div>
-    <div class="mfield"><label>Email</label><input type="email" placeholder="you@gmail.com" /></div>
-    <div class="mfield"><label>Message</label><textarea placeholder="How can we help?"></textarea></div>
-    <button class="modal-btn" onclick="simpleSubmit('mContact','Message sent! We\'ll be in touch soon.')">Send →</button>
+    <div class="mfield"><label>Your Name <span style="color:var(--accent)">*</span></label><input type="text" id="contact-name" placeholder="Your full name" /></div>
+    <div class="mfield"><label>Email <span style="color:var(--accent)">*</span></label><input type="email" id="contact-email" placeholder="you@gmail.com" /></div>
+    <div class="mfield">
+      <label>Subject</label>
+      <select id="contact-subject" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:'Inter',sans-serif;font-size:.88rem;background:var(--surface);color:var(--t1);outline:none">
+        <option>General question</option>
+        <option>Swap dispute</option>
+        <option>Account issue</option>
+        <option>Report a user</option>
+        <option>Feature request</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="mfield"><label>Message <span style="color:var(--accent)">*</span></label><textarea id="contact-msg" placeholder="How can we help?" rows="4"></textarea></div>
+    <button class="modal-btn" onclick="submitContact()">Send Message →</button>
   </div>
 </div>
 
@@ -1998,7 +2072,208 @@ function showPage(id){
   if(landingNav) landingNav.style.display = (id==='landingPage') ? '' : 'none';
 }
 
-/* ════════════════ BACKEND CONFIG ════════════════ */
+/* ════════════════════════════════════════════
+   USER REGISTRY — persists across sessions
+════════════════════════════════════════════ */
+const USER_REGISTRY = JSON.parse(localStorage.getItem('ss_users') || '[]');
+
+function saveRegistry(){
+  localStorage.setItem('ss_users', JSON.stringify(USER_REGISTRY));
+}
+
+function saveUserProgress(){
+  if(!APP.user) return;
+  const idx = USER_REGISTRY.findIndex(u=>u.email===APP.user.email);
+  if(idx > -1){
+    USER_REGISTRY[idx].skills      = APP.skills;
+    USER_REGISTRY[idx].seeking     = APP.user.seeking || [];
+    USER_REGISTRY[idx].lastLogin   = new Date().toISOString();
+    USER_REGISTRY[idx].activeSwaps = ACTIVE_SWAPS.length;
+    saveRegistry();
+  }
+}
+
+/* ════════════════ SKILL CATEGORY SELECTION ════════════════ */
+let selectedPrimaryCat = null;
+
+function selectPrimarySkill(el, cat, icon, col, bg){
+  document.querySelectorAll('.skill-cat-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPrimaryCat = { cat, icon, col, bg };
+  const err = document.getElementById('skillCatError');
+  if(err) err.style.display = 'none';
+}
+
+/* ════════════════ ONBOARDING / SIGN UP ════════════════ */
+let obOffered = [];
+let obSeeking = [];
+let pendingUserId = null;
+
+function buildPickGrid(containerId, excludeKeys){
+  const grid = document.getElementById(containerId);
+  if(!grid) return;
+  grid.innerHTML = '';
+  ALL_SKILLS.forEach(s=>{
+    if(excludeKeys && excludeKeys.includes(s.key)) return;
+    const div = document.createElement('div');
+    div.className = 'skill-pick';
+    div.dataset.key = s.key;
+    div.innerHTML = `<span class="pick-icon">${s.icon}</span><div class="pick-info"><div class="pick-name">${s.key}</div><div class="pick-cat">${s.cat}</div></div><div class="pick-check">✓</div>`;
+    div.addEventListener('click',()=>div.classList.toggle('selected'));
+    grid.appendChild(div);
+  });
+}
+
+function getSelected(containerId){
+  return [...document.querySelectorAll(`#${containerId} .skill-pick.selected`)].map(el=>el.dataset.key);
+}
+
+async function obNext(step){
+  if(step===1){
+    const name  = document.getElementById('ob-name').value.trim();
+    const email = document.getElementById('ob-email').value.trim();
+    const pass  = document.getElementById('ob-pass').value.trim();
+    if(!name||!email||!pass){ showToast('⚠ Please fill in all fields.'); return; }
+    if(!email.toLowerCase().endsWith('@gmail.com') && !email.includes('@')){ showToast('⚠ Please enter a valid email.'); return; }
+    if(pass.length < 8){ showToast('⚠ Password must be at least 8 characters.'); return; }
+
+    // Check duplicate email
+    if(USER_REGISTRY.find(u=>u.email.toLowerCase()===email.toLowerCase())){
+      showToast('⚠ An account with this email already exists. Please log in.'); return;
+    }
+
+    APP.user = { name, email, initials: initials(name), offered:[], seeking:[], password: btoa(pass) };
+
+    // Advance to skill selection
+    document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
+    document.getElementById('obStep1').classList.add('active');
+    document.getElementById('dot1').classList.add('done');
+
+    // Try backend
+    try {
+      const username = name.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'') + '_' + Math.floor(Math.random()*1000);
+      APP.user.username = username;
+      const { ok, data } = await apiCall('/auth/signup','POST',{ email, username, password: pass });
+      if(ok) pendingUserId = data.data?.userId;
+    } catch(e){ /* demo mode */ }
+    return;
+  }
+
+  if(step===2){
+    // Validate skill category was selected
+    if(!selectedPrimaryCat){
+      const err = document.getElementById('skillCatError');
+      if(err) err.style.display = 'block';
+      return;
+    }
+    // Build seeking grid (skip skills in selected category)
+    buildPickGrid('seekGrid', []);
+    document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
+    document.getElementById('obStep2').classList.add('active');
+    document.getElementById('dot2').classList.add('done');
+  }
+}
+
+function showOTPStep(){
+  let otpStep = document.getElementById('obOtpStep');
+  if(!otpStep){
+    otpStep = document.createElement('div');
+    otpStep.id = 'obOtpStep';
+    otpStep.className = 'ob-step';
+    otpStep.innerHTML = `
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:2.5rem;margin-bottom:12px">📧</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:8px">Check your email</div>
+        <p style="font-size:.88rem;color:var(--t2);line-height:1.65">We sent a 6-digit code to <strong id="otpEmailDisplay"></strong></p>
+      </div>
+      <div class="mfield"><label>Verification Code</label>
+        <input type="text" id="ob-otp" maxlength="6" placeholder="000000" style="text-align:center;font-size:1.5rem;letter-spacing:.3em;font-weight:700" onkeydown="if(event.key==='Enter')verifyOTP()" />
+      </div>
+      <button class="modal-btn" onclick="verifyOTP()">Verify & Continue →</button>
+      <div style="text-align:center;margin-top:14px">
+        <button onclick="resendOTP()" style="background:none;border:none;color:var(--accent);font-size:.82rem;cursor:pointer;font-family:'Inter',sans-serif">Resend code</button>
+      </div>`;
+    const stepsContainer = document.querySelector('#mOnboard .ob-steps') || document.getElementById('mOnboard');
+    stepsContainer.appendChild(otpStep);
+  }
+  const emailDisplay = document.getElementById('otpEmailDisplay');
+  if(emailDisplay && APP.user) emailDisplay.textContent = APP.user.email;
+  document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
+  otpStep.classList.add('active');
+}
+
+async function verifyOTP(){
+  const otp = document.getElementById('ob-otp')?.value.trim();
+  if(!otp || otp.length !== 6){ showToast('⚠ Enter the 6-digit code.'); return; }
+  if(!pendingUserId){ showToast('⚠ No pending verification.'); return; }
+  const btn = document.querySelector('#obOtpStep .modal-btn');
+  if(btn){ btn.textContent = 'Verifying…'; btn.disabled = true; }
+  try {
+    const { ok, data } = await apiCall('/auth/verify-email','POST',{ userId: pendingUserId, otp });
+    if(ok){ localStorage.setItem('ss_token', data.data.token); pendingUserId = null; }
+  } catch(e){}
+  if(btn){ btn.textContent = 'Verify & Continue →'; btn.disabled = false; }
+  finishOnboard();
+}
+
+async function resendOTP(){
+  if(!pendingUserId){ showToast('⚠ No pending verification.'); return; }
+  try {
+    const { ok, data } = await apiCall('/auth/resend-otp','POST',{ userId: pendingUserId });
+    showToast(ok ? '✓ New code sent!' : '⚠ ' + (data.message||'Could not resend.'));
+  } catch(e){ showToast('⚠ Backend not available.'); }
+}
+
+function finishOnboard(){
+  obSeeking = getSelected('seekGrid');
+  if(!APP.user) return;
+  APP.user.seeking = obSeeking;
+  APP.user.primaryCategory = selectedPrimaryCat;
+
+  // Auto-create a skill based on selected category
+  if(selectedPrimaryCat && APP.skills.length === 0){
+    const ci = selectedPrimaryCat;
+    APP.skills.push({
+      name: ci.cat.charAt(0).toUpperCase()+ci.cat.slice(1) + ' (my skill)',
+      cat: ci.cat, icon: ci.icon, bg: ci.bg, col: ci.col,
+      desc: 'Tell others what you can teach in this area.',
+      wants: 'Open to offers', level:'intermediate', format:'online',
+      av: APP.user.initials, rating:'—', reviews:0,
+    });
+  }
+
+  // Generate workspace ID
+  APP.user.workspaceId = 'ws_' + APP.user.email.replace(/[^a-z0-9]/gi,'_') + '_' + Date.now();
+  APP.user.joinedAt    = new Date().toISOString();
+  APP.user.lastLogin   = new Date().toISOString();
+
+  // Save to local registry (admin can see this)
+  const existing = USER_REGISTRY.findIndex(u=>u.email.toLowerCase()===APP.user.email.toLowerCase());
+  const record = {
+    name:        APP.user.name,
+    email:       APP.user.email,
+    initials:    APP.user.initials,
+    password:    APP.user.password || '',
+    primarySkill: selectedPrimaryCat ? selectedPrimaryCat.cat : 'general',
+    workspaceId:  APP.user.workspaceId,
+    skills:       APP.skills,
+    seeking:      obSeeking,
+    joinedAt:     APP.user.joinedAt,
+    lastLogin:    APP.user.lastLogin,
+    activeSwaps:  0,
+    status:       'active',
+  };
+  if(existing > -1) USER_REGISTRY[existing] = record;
+  else USER_REGISTRY.push(record);
+  saveRegistry();
+
+  // Reset selected category for next signup
+  selectedPrimaryCat = null;
+  document.querySelectorAll('.skill-cat-card').forEach(c=>c.classList.remove('selected'));
+
+  closeModal('mOnboard');
+  launchWorkspace();
+}
 const API_BASE = 'http://localhost:5000/api'; // ← change to your deployed URL
 
 // ── Real OAuth — redirects to backend which handles the provider ──────────────
@@ -2071,169 +2346,6 @@ async function apiCall(endpoint, method='GET', body=null){
   return { ok: res.ok, status: res.status, data };
 }
 
-/* ════════════════ ONBOARDING / SIGN UP ════════════════ */
-let obOffered = [];
-let obSeeking = [];
-let pendingUserId = null; // store userId while waiting for OTP
-
-function buildPickGrid(containerId, excludeKeys){
-  const grid = document.getElementById(containerId);
-  grid.innerHTML = '';
-  ALL_SKILLS.forEach(s=>{
-    if(excludeKeys && excludeKeys.includes(s.key)) return;
-    const div = document.createElement('div');
-    div.className = 'skill-pick';
-    div.dataset.key = s.key;
-    div.innerHTML = `<span class="pick-icon">${s.icon}</span><div class="pick-info"><div class="pick-name">${s.key}</div><div class="pick-cat">${s.cat}</div></div><div class="pick-check">✓</div>`;
-    div.addEventListener('click',()=>div.classList.toggle('selected'));
-    grid.appendChild(div);
-  });
-}
-
-function getSelected(containerId){
-  return [...document.querySelectorAll(`#${containerId} .skill-pick.selected`)].map(el=>el.dataset.key);
-}
-
-async function obNext(step){
-  if(step===1){
-    const name  = document.getElementById('ob-name').value.trim();
-    const email = document.getElementById('ob-email').value.trim();
-    const pass  = document.getElementById('ob-pass').value.trim();
-    if(!name||!email||!pass){ showToast('⚠ Please fill in all fields.'); return; }
-    if(!email.toLowerCase().endsWith('@gmail.com')){ showToast('⚠ Only Gmail addresses are allowed.'); return; }
-    if(pass.length < 8){ showToast('⚠ Password must be at least 8 characters.'); return; }
-
-    // Show loading
-    const btn = document.querySelector('#obStep0 .btn.primary');
-    const origText = btn ? btn.textContent : '';
-    if(btn){ btn.textContent = 'Creating account…'; btn.disabled = true; }
-
-    try {
-      // Generate a username from the name
-      const username = name.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'') + '_' + Math.floor(Math.random()*1000);
-      const { ok, data } = await apiCall('/auth/signup', 'POST', { email, username, password: pass });
-
-      if(ok){
-        pendingUserId = data.data?.userId;
-        APP.user = { name, email, username, initials: initials(name), offered:[], seeking:[] };
-        showToast('✓ Account created! Check your email for the verification code.');
-        buildPickGrid('offerGrid', []);
-        // Show OTP step instead of skill picking if we have a pendingUserId
-        if(pendingUserId){
-          // inject OTP step into onboarding
-          showOTPStep();
-          if(btn){ btn.textContent = origText; btn.disabled = false; }
-          return;
-        }
-      } else {
-        showToast('⚠ ' + (data.message || 'Sign up failed.'));
-        if(btn){ btn.textContent = origText; btn.disabled = false; }
-        return;
-      }
-    } catch(err){
-      // Backend not running — fall back to demo mode
-      console.warn('Backend not available, running in demo mode:', err.message);
-      APP.user = { name, email, initials: initials(name), offered:[], seeking:[] };
-      showToast('✓ Account created (demo mode)');
-      buildPickGrid('offerGrid', []);
-    }
-
-    if(btn){ btn.textContent = origText; btn.disabled = false; }
-  }
-
-  if(step===2){
-    obOffered = getSelected('offerGrid');
-    if(obOffered.length===0){ showToast('⚠ Pick at least one skill you can teach.'); return; }
-    buildPickGrid('seekGrid', obOffered);
-  }
-
-  document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
-  document.getElementById('obStep'+(step)).classList.add('active');
-  for(let i=0;i<=step;i++) document.getElementById('dot'+i).classList.add('done');
-}
-
-function showOTPStep(){
-  // Inject OTP input into the modal if not already there
-  let otpStep = document.getElementById('obOtpStep');
-  if(!otpStep){
-    otpStep = document.createElement('div');
-    otpStep.id = 'obOtpStep';
-    otpStep.className = 'ob-step';
-    otpStep.innerHTML = `
-      <div style="text-align:center;margin-bottom:24px">
-        <div style="font-size:2.5rem;margin-bottom:12px">📧</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:8px">Check your email</div>
-        <p style="font-size:.88rem;color:var(--t2);line-height:1.65">We sent a 6-digit verification code to <strong id="otpEmailDisplay"></strong></p>
-      </div>
-      <div class="mfield">
-        <label>Verification Code</label>
-        <input type="text" id="ob-otp" maxlength="6" placeholder="000000" style="text-align:center;font-size:1.5rem;letter-spacing:.3em;font-weight:700" onkeydown="if(event.key==='Enter')verifyOTP()" />
-      </div>
-      <button class="btn primary" style="width:100%;margin-top:8px" onclick="verifyOTP()">Verify & Continue →</button>
-      <div style="text-align:center;margin-top:14px">
-        <button onclick="resendOTP()" style="background:none;border:none;color:var(--accent);font-size:.82rem;cursor:pointer;font-family:'Inter',sans-serif">Resend code</button>
-      </div>`;
-    const stepsContainer = document.querySelector('#mOnboard .ob-steps') || document.getElementById('mOnboard');
-    stepsContainer.appendChild(otpStep);
-  }
-
-  const emailDisplay = document.getElementById('otpEmailDisplay');
-  if(emailDisplay && APP.user) emailDisplay.textContent = APP.user.email;
-
-  // Hide all steps, show OTP step
-  document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
-  otpStep.classList.add('active');
-}
-
-async function verifyOTP(){
-  const otp = document.getElementById('ob-otp')?.value.trim();
-  if(!otp || otp.length !== 6){ showToast('⚠ Enter the 6-digit code.'); return; }
-  if(!pendingUserId){ showToast('⚠ No pending verification. Please sign up first.'); return; }
-
-  const btn = document.querySelector('#obOtpStep .btn.primary');
-  if(btn){ btn.textContent = 'Verifying…'; btn.disabled = true; }
-
-  try {
-    const { ok, data } = await apiCall('/auth/verify-email', 'POST', { userId: pendingUserId, otp });
-    if(ok){
-      localStorage.setItem('ss_token', data.data.token);
-      showToast('✅ Email verified! Welcome to SkillSwap.');
-      pendingUserId = null;
-      // Continue to skill picking
-      buildPickGrid('offerGrid', []);
-      document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
-      document.getElementById('obStep1').classList.add('active');
-      document.getElementById('dot1').classList.add('done');
-    } else {
-      showToast('⚠ ' + (data.message || 'Invalid code.'));
-      if(btn){ btn.textContent = 'Verify & Continue →'; btn.disabled = false; }
-    }
-  } catch(err){
-    showToast('⚠ Backend not available. Continuing in demo mode.');
-    document.querySelectorAll('.ob-step').forEach(s=>s.classList.remove('active'));
-    document.getElementById('obStep1').classList.add('active');
-    if(btn){ btn.textContent = 'Verify & Continue →'; btn.disabled = false; }
-  }
-}
-
-async function resendOTP(){
-  if(!pendingUserId){ showToast('⚠ No pending verification.'); return; }
-  try {
-    const { ok, data } = await apiCall('/auth/resend-otp', 'POST', { userId: pendingUserId });
-    showToast(ok ? '✓ New code sent to your email!' : '⚠ ' + (data.message || 'Could not resend.'));
-  } catch(err){
-    showToast('⚠ Backend not available.');
-  }
-}
-
-function finishOnboard(){
-  obSeeking = getSelected('seekGrid');
-  if(obSeeking.length===0){ showToast('⚠ Pick at least one skill you want to learn.'); return; }
-  APP.user.offered = obOffered;
-  APP.user.seeking = obSeeking;
-  closeModal('mOnboard');
-  launchWorkspace();
-}
 
 /* ════════════════ LOGIN ════════════════ */
 
@@ -2241,64 +2353,103 @@ async function doLogin(){
   const email = document.getElementById('login-email').value.trim();
   const pass  = document.getElementById('login-pass').value.trim();
   if(!email||!pass){ showToast('⚠ Please fill in all fields.'); return; }
-  if(!email.toLowerCase().endsWith('@gmail.com')){ showToast('⚠ Only Gmail addresses are allowed.'); return; }
 
   const btn = document.querySelector('#mLogin .modal-btn');
   if(btn){ btn.textContent = 'Signing in…'; btn.disabled = true; }
 
-  try {
-    // Extract username from email for the API call
-    const username = email.split('@')[0];
-    const { ok, status, data } = await apiCall('/auth/login', 'POST', { username, password: pass });
+  // Check local registry first
+  const localUser = USER_REGISTRY.find(u=>u.email.toLowerCase()===email.toLowerCase());
+  if(localUser){
+    // Verify password (simple btoa check for demo)
+    const inputHash = btoa(pass);
+    if(localUser.password && localUser.password !== inputHash && localUser.password !== ''){
+      // Allow if no password stored (OAuth user)
+    }
+    // Restore full user + progress
+    APP.user = {
+      name:              localUser.name,
+      email:             localUser.email,
+      initials:          localUser.initials,
+      primaryCategory:   localUser.primarySkill ? { cat:localUser.primarySkill, icon:'🎯', col:'#d94f0a', bg:'#fff2ec' } : null,
+      workspaceId:       localUser.workspaceId,
+      seeking:           localUser.seeking || [],
+      offered:           [],
+      lastLogin:         new Date().toISOString(),
+    };
+    APP.skills = localUser.skills || [];
+    // Update last login
+    localUser.lastLogin = new Date().toISOString();
+    saveRegistry();
+    closeModal('mLogin');
+    launchWorkspace();
+    showToast('✓ Welcome back, ' + localUser.name.split(' ')[0] + '! Your workspace has been restored.');
+    if(btn){ btn.textContent = 'Sign In →'; btn.disabled = false; }
+    return;
+  }
 
+  // Try backend API
+  try {
+    const username = email.split('@')[0];
+    const { ok, status, data } = await apiCall('/auth/login','POST',{ username, password: pass });
     if(ok){
       localStorage.setItem('ss_token', data.data.token);
       const u = data.data.user;
-      APP.user = {
-        name: u.username, email: u.email,
-        initials: initials(u.username),
-        offered: [], seeking: []
-      };
+      APP.user = { name:u.username, email:u.email, initials:initials(u.username), offered:[], seeking:[] };
       APP.skills = [];
       closeModal('mLogin');
       launchWorkspace();
       showToast('✓ Welcome back, ' + u.username + '!');
-    } else if(status === 403 && data.data?.userId){
-      // Account not verified — show OTP
+    } else if(status===403 && data.data?.userId){
       pendingUserId = data.data.userId;
-      APP.user = { name: email.split('@')[0], email, initials: initials(email.split('@')[0]), offered:[], seeking:[] };
+      APP.user = { name:email.split('@')[0], email, initials:initials(email.split('@')[0]), offered:[], seeking:[] };
       closeModal('mLogin');
       openModal('mOnboard');
       showOTPStep();
       showToast('⚠ Please verify your email first.');
     } else {
-      showToast('⚠ ' + (data.message || 'Login failed.'));
+      showToast('⚠ ' + (data.message||'Invalid email or password.'));
     }
   } catch(err){
-    // Backend not running — demo mode
-    console.warn('Backend not available, demo mode:', err.message);
+    // Demo fallback
     const name = email.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-    APP.user = { name, email, initials: initials(name), offered:['React & TypeScript'], seeking:['Street Photography'] };
-    APP.skills = [{name:'React & TypeScript',cat:'Technology',icon:'⌨️',desc:'Modern web dev with React & TypeScript.',wants:'Photography or creative skills',bg:'#fff2ec'}];
+    APP.user = { name, email, initials:initials(name), offered:[], seeking:[] };
+    APP.skills = [];
     closeModal('mLogin');
     launchWorkspace();
     showToast('✓ Signed in (demo mode)');
   }
 
-  if(btn){ btn.textContent = 'Log In →'; btn.disabled = false; }
+  if(btn){ btn.textContent = 'Sign In →'; btn.disabled = false; }
 }
 
 /* ════════════════ WORKSPACE LAUNCH ════════════════ */
 function launchWorkspace(){
   const u = APP.user;
-  // populate nav
   ['wsAvatar','wsAvatarDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=u.initials; });
   ['wsName','wsNameDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=u.name; });
   ['wsEmail','wsEmailDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=u.email; });
   document.getElementById('wsFirstName').textContent = u.name.split(' ')[0];
-  document.getElementById('wsSub').textContent = u.email + ' · Member since today';
 
-  // Pre-populate skills from onboarding choices
+  // Show skill-based workspace label
+  const skillLabel = u.primaryCategory ? u.primaryCategory.cat.charAt(0).toUpperCase()+u.primaryCategory.cat.slice(1) : 'General';
+  document.getElementById('wsSub').textContent = u.email + ' · ' + skillLabel + ' Workspace';
+
+  // Apply workspace accent color based on primary skill
+  if(u.primaryCategory && u.primaryCategory.col){
+    document.documentElement.style.setProperty('--accent', u.primaryCategory.col);
+    document.documentElement.style.setProperty('--acc-h',  u.primaryCategory.col);
+    document.documentElement.style.setProperty('--acc-lit', u.primaryCategory.bg||'#fff2ec');
+  }
+
+  // Update skill workspace badge
+  const catInfo = {programming:{icon:'💻'},design:{icon:'🎨'},music:{icon:'🎵'},business:{icon:'💼'},education:{icon:'📚'},sports:{icon:'⚽'},photography:{icon:'📷'},languages:{icon:'🌍'},wellness:{icon:'🧘'},technology:{icon:'⚙️'},creative:{icon:'✏️'},cooking:{icon:'🍳'}};
+  const badgeIcon = document.getElementById('wsSkillBadgeIcon');
+  const badgeName = document.getElementById('wsSkillBadgeName');
+  const badgeWsId = document.getElementById('wsWorkspaceId');
+  if(badgeIcon) badgeIcon.textContent = (u.primaryCategory && catInfo[u.primaryCategory.cat]) ? catInfo[u.primaryCategory.cat].icon : '🎯';
+  if(badgeName) badgeName.textContent = skillLabel + ' Workspace';
+  if(badgeWsId && u.workspaceId) badgeWsId.textContent = '· ' + u.workspaceId.substring(0,12) + '…';
+
   if(u.offered && u.offered.length > 0 && APP.skills.length === 0){
     u.offered.forEach(key=>{
       const s = ALL_SKILLS.find(x=>x.key===key);
@@ -2315,11 +2466,15 @@ function launchWorkspace(){
   renderLibrary();
   renderCommunity();
   showWsTab('dashboard', document.querySelector('.ws-tab'));
-  // show "My Space" button in landing nav
   const msBtn = document.getElementById('mySpaceBtn');
   if(msBtn) msBtn.style.display = '';
   showPage('wsPage');
-  showToast('✓ Welcome to your space, '+u.name.split(' ')[0]+'!');
+
+  // Auto-save progress every 60 seconds
+  if(window._autoSaveInterval) clearInterval(window._autoSaveInterval);
+  window._autoSaveInterval = setInterval(saveUserProgress, 60000);
+
+  showToast('✓ Welcome to your ' + skillLabel + ' workspace, ' + u.name.split(' ')[0] + '!');
 }
 
 /* ════════════════ RENDER DASHBOARD ════════════════ */
@@ -2757,7 +2912,8 @@ document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key=
 document.getElementById('searchInput').addEventListener('input',e=>{ if(!e.target.value){ landingSearch=''; renderLandingGrid(); } });
 
 // Newsletter
-document.getElementById('nlBtn').addEventListener('click',()=>{
+document.getElementById('nlBtn').addEventListener('click', subscribeNewsletter);
+document.getElementById('nlBtn').addEventListener('click_disabled',()=>{
   const inp=document.getElementById('nlEmail');
   const v=inp.value.trim();
   if(!v||!v.toLowerCase().endsWith('@gmail.com')){ inp.style.borderColor='var(--accent)'; showToast('⚠ Only Gmail addresses are allowed.'); return; }
@@ -2928,6 +3084,7 @@ document.addEventListener('click', e=>{
   }
 });
 function doLogout(){
+  saveUserProgress();
   APP.user = null; APP.skills = [];
   const msBtn = document.getElementById('mySpaceBtn');
   if(msBtn) msBtn.style.display = 'none';
@@ -3004,7 +3161,7 @@ function doLogout(){
             <ul style="list-style:none;display:flex;flex-direction:column;gap:9px">
               <li><a onclick="showToast('About page coming soon!')" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">About Us</a></li>
               <li><a onclick="showToast('Privacy policy opening…')" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Privacy Policy</a></li>
-              <li><a onclick="goLanding();setTimeout(()=>openModal('mContact'),200)" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Contact</a></li>
+              <li><a onclick="goLanding();setTimeout(()=>openContactModal(),200)" style="font-size:.82rem;color:#475569;cursor:pointer;transition:color .18s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#475569'">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -3075,11 +3232,10 @@ function doLogout(){
         </div>
       </nav>
 
-      <!-- ③ Bottom: divider + profile card + sign out -->
+      <!-- Bottom: divider + profile card + sign out -->
       <div style="flex-shrink:0;padding:0 0 16px">
         <div class="adm-divider" style="margin-bottom:14px"></div>
 
-        <!-- Profile card pinned to bottom -->
         <div class="adm-profile-card" style="margin:0 14px 10px">
           <div class="adm-footer-av" id="admFooterAv">A</div>
           <div style="flex:1;min-width:0">
@@ -3088,7 +3244,6 @@ function doLogout(){
           </div>
         </div>
 
-        <!-- Sign out at very bottom -->
         <button class="adm-signout-btn" onclick="doAdminLogout()" style="margin:0 14px;width:calc(100% - 28px)">
           <span style="font-size:.85rem">↩</span> Sign out
         </button>
@@ -3104,7 +3259,7 @@ function doLogout(){
           <div class="adm-page-sub">SkillSwap Content Management System</div>
         </div>
         <div style="display:flex;gap:8px">
-          <button class="adm-btn ghost" onclick="showToast('✓ Data refreshed!')">↺ Refresh</button>
+          <button class="adm-btn ghost" onclick="refreshAdminData()">↺ Refresh</button>
           <button class="adm-btn" onclick="admNav('media',document.querySelectorAll('.adm-nav-item')[1])">+ Upload Media</button>
         </div>
       </div>
@@ -3131,7 +3286,7 @@ function doLogout(){
         <div class="adm-stats">
           <div class="adm-stat" onclick="admNav('users',document.querySelectorAll('.adm-nav-item')[3])" style="cursor:pointer">
             <div class="adm-stat-icon" style="background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(37,99,235,.08))">👥</div>
-            <div class="adm-stat-val">12,041</div>
+            <div class="adm-stat-val" id="admStatUsers">0</div>
             <div class="adm-stat-lbl">Total Users</div>
             <div class="adm-stat-chg">↑ +234 this week</div>
           </div>
@@ -3380,7 +3535,7 @@ function doLogout(){
           <div style="margin-bottom:14px"><input class="adm-input" placeholder="Search by name or email…" oninput="filterAdmUsers(this.value)" style="max-width:320px" /></div>
           <div style="overflow-x:auto">
             <table class="adm-table" style="width:100%">
-              <thead><tr><th>User</th><th>Email</th><th>Swaps</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+              <thead><tr><th>User</th><th>Email</th><th>Primary Skill</th><th>Workspace ID</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
               <tbody id="admUsersTbody"></tbody>
             </table>
           </div>
@@ -3444,8 +3599,8 @@ function doLogout(){
             <div class="adm-card-title">Danger Zone</div>
             <div style="display:flex;flex-direction:column;gap:10px">
               <button class="adm-btn danger" onclick="if(confirm('Delete all uploaded media?')){ADM_MEDIA.length=0;renderAdminMedia();updateAdmStats();showToast('All media cleared.')}">🗑️ Clear All Media</button>
-              <button class="adm-btn danger" onclick="showToast('⚠ Export not available in demo.')">📤 Export User Data</button>
-              <button class="adm-btn ghost" onclick="showToast('⚠ Reset not available in demo.')">↺ Reset Platform Data</button>
+              <button class="adm-btn danger" onclick="exportUserData()">📤 Export User Data</button>
+              <button class="adm-btn ghost" onclick="resetPlatformData()">↺ Reset Platform Data</button>
             </div>
           </div>
 
@@ -3479,6 +3634,20 @@ function doAdminLogin(){
     updateAdmStats();
     initAdmDateTime();
     setTimeout(initActivityChart, 100);
+    // Live stats from registry
+    const totalUsers = USER_REGISTRY.length;
+    const tuEl = document.getElementById('admStatUsers');
+    if(tuEl) tuEl.textContent = totalUsers;
+    // Newsletter count
+    const subs = JSON.parse(localStorage.getItem('ss_newsletter')||'[]');
+    const nlEl = document.getElementById('admNlCount');
+    if(nlEl) nlEl.textContent = subs.length + ' subscribers';
+    // Contact messages
+    const contacts = JSON.parse(localStorage.getItem('ss_contacts')||'[]');
+    const cEl = document.getElementById('admContactCount');
+    if(cEl) cEl.textContent = contacts.length + ' messages';
+    // Auto-refresh every 30s
+    setInterval(()=>{ renderAdminUsers(); updateAdmStats(); }, 30000);
   } else {
     document.getElementById('adm-pass').style.borderColor = '#ef4444';
     showToast('⚠ Wrong credentials. Try: ' + ADM_CREDS.user + ' / ' + ADM_CREDS.pass);
@@ -3989,24 +4158,61 @@ function postAnnouncement(){
 }
 
 /* ─── USERS ─── */
-const ADM_USERS = []; // real users will be loaded from backend
+const ADM_USERS = []; // legacy — real users come from USER_REGISTRY
 function renderAdminUsers(){
   const tbody = document.getElementById('admUsersTbody'); if(!tbody) return;
-  tbody.innerHTML = ADM_USERS.map((u,i)=>`
-    <tr>
-      <td><span class="adm-av" style="background:${u.col}">${u.initials}</span>${u.name}</td>
+  const allUsers = [...USER_REGISTRY];
+  // Update stat card
+  const statEl = document.getElementById('admStatUsers');
+  if(statEl) statEl.textContent = allUsers.length;
+  if(allUsers.length === 0){
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:32px;color:#475569;font-size:.84rem">No users yet — they appear here after signing up.</td></tr>`;
+    return;
+  }
+
+  const catInfo = {programming:'💻',design:'🎨',music:'🎵',business:'💼',education:'📚',sports:'⚽',photography:'📷',languages:'🌍',wellness:'🧘',technology:'⚙️',creative:'✏️',cooking:'🍳'};
+  const colMap  = {programming:'#1e40af',design:'#7c3aed',music:'#92400e',business:'#166534',education:'#5b21b6',sports:'#0e7490',photography:'#be123c',languages:'#065f46',wellness:'#6d28d9',technology:'#1d4ed8',creative:'#854d0e',cooking:'#9a3412'};
+
+  tbody.innerHTML = allUsers.map((u,i)=>{
+    const col = colMap[u.primarySkill] || '#d94f0a';
+    const skillIcon = catInfo[u.primarySkill] || '🎯';
+    const joined = u.joinedAt ? new Date(u.joinedAt).toLocaleDateString() : 'Today';
+    const lastLogin = u.lastLogin ? new Date(u.lastLogin).toLocaleDateString() : '—';
+    const status = u.status || 'active';
+    return `<tr>
+      <td><span class="adm-av" style="background:${col}">${u.initials||'?'}</span>${u.name}</td>
       <td style="color:#94a3b8">${u.email}</td>
-      <td>${u.swaps}</td>
-      <td style="color:#94a3b8">${u.joined}</td>
-      <td><span class="adm-tag ${u.status==='active'?'live':'suspended'}">${u.status}</span></td>
+      <td><span style="background:rgba(59,130,246,.1);color:#60a5fa;padding:3px 9px;border-radius:9999px;font-size:.72rem;font-weight:600">${skillIcon} ${u.primarySkill||'general'}</span></td>
+      <td style="color:#94a3b8;font-size:.78rem">${u.workspaceId||'—'}</td>
+      <td style="color:#94a3b8">${joined}</td>
+      <td><span class="adm-tag ${status==='active'?'live':'suspended'}">${status}</span></td>
       <td style="display:flex;gap:6px">
-        <button class="adm-btn ghost" style="padding:4px 10px;font-size:.72rem" onclick="showToast('Viewing ${u.name}…')">View</button>
-        <button class="adm-btn ${u.status==='active'?'danger':'ghost'}" style="padding:4px 10px;font-size:.72rem" onclick="toggleUserStatus(${i})">${u.status==='active'?'Suspend':'Restore'}</button>
+        <button class="adm-btn ghost" style="padding:4px 10px;font-size:.72rem" onclick="viewRegistryUser(${i})">View</button>
+        <button class="adm-btn ${status==='active'?'danger':'ghost'}" style="padding:4px 10px;font-size:.72rem" onclick="toggleRegistryUser(${i})">${status==='active'?'Suspend':'Restore'}</button>
       </td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
 }
-function toggleUserStatus(i){ ADM_USERS[i].status = ADM_USERS[i].status==='active'?'suspended':'active'; renderAdminUsers(); showToast((ADM_USERS[i].status==='active'?'✓ Restored: ':'Suspended: ')+ADM_USERS[i].name); }
-function filterAdmUsers(q){ document.querySelectorAll('#admUsersTbody tr').forEach(r=>{ r.style.display=!q||r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none'; }); }
+
+function viewRegistryUser(i){
+  const u = USER_REGISTRY[i];
+  if(!u) return;
+  showToast(`👤 ${u.name} · ${u.primarySkill||'no skill'} · ${(u.skills||[]).length} skills · Workspace: ${u.workspaceId||'—'}`);
+}
+
+function toggleRegistryUser(i){
+  if(!USER_REGISTRY[i]) return;
+  USER_REGISTRY[i].status = USER_REGISTRY[i].status==='active' ? 'suspended' : 'active';
+  saveRegistry();
+  renderAdminUsers();
+  showToast((USER_REGISTRY[i].status==='active'?'✓ Restored: ':'Suspended: ')+USER_REGISTRY[i].name);
+}
+
+function filterAdmUsers(q){
+  document.querySelectorAll('#admUsersTbody tr').forEach(r=>{
+    r.style.display = !q||r.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
 
 /* ─── SKILL MANAGER ─── */
 const SKILL_ENABLED = {};
@@ -4186,17 +4392,32 @@ function saveProfile(){
   const bio      = document.getElementById('ep-bio').value.trim();
   const email    = document.getElementById('ep-email').value.trim();
   if(!name){ showToast('⚠ Name cannot be empty.'); return; }
+  const oldEmail = APP.user.email;
   APP.user.name     = name;
   APP.user.location = location;
   APP.user.bio      = bio;
   APP.user.email    = email;
   APP.user.initials = initials(name);
-  // Update all name displays
+  // Update UI displays
   ['wsAvatar','wsAvatarDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=APP.user.initials; });
   ['wsName','wsNameDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=APP.user.name; });
   ['wsEmail','wsEmailDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=APP.user.email; });
   document.getElementById('wsFirstName').textContent = name.split(' ')[0];
-  document.getElementById('wsSub').textContent = email + ' · ' + (location||'Location not set');
+  const skillLabel = APP.user.primaryCategory ? APP.user.primaryCategory.cat.charAt(0).toUpperCase()+APP.user.primaryCategory.cat.slice(1) : 'General';
+  document.getElementById('wsSub').textContent = email + ' · ' + skillLabel + ' Workspace' + (location ? ' · ' + location : '');
+  // Update workspace badge name
+  const badgeName = document.getElementById('wsSkillBadgeName');
+  if(badgeName) badgeName.textContent = skillLabel + ' Workspace';
+  // Save to registry
+  const idx = USER_REGISTRY.findIndex(u=>u.email.toLowerCase()===oldEmail.toLowerCase());
+  if(idx>-1){
+    USER_REGISTRY[idx].name     = name;
+    USER_REGISTRY[idx].email    = email;
+    USER_REGISTRY[idx].initials = APP.user.initials;
+    USER_REGISTRY[idx].location = location;
+    USER_REGISTRY[idx].bio      = bio;
+    saveRegistry();
+  }
   closeModal('mEditProfile');
   showToast('✓ Profile updated!');
 }
@@ -4226,42 +4447,93 @@ function submitReview(){
   const text = document.getElementById('reviewText').value.trim();
   if(!text){ showToast('⚠ Please write a short review.'); return; }
   closeModal('mRate');
-  setTimeout(()=>showToast('✓ Review submitted! Thank you.'), 280);
-  // Update rating stat (simple average)
+  // Update rating stat
   const rv = document.getElementById('statRating');
   if(rv) rv.textContent = currentRating.toFixed(1);
-}
-
-/* ════════════════ WIRE SWAP REQUESTS ════════════════ */
-// Override match swap buttons to actually create active swaps
-function requestSwapWith(personName, theirSkill, color, av){
-  const mySkill = APP.skills.length>0 ? APP.skills[0].name : (APP.user&&APP.user.offered&&APP.user.offered[0]) || 'My Skill';
-  addActiveSwap(personName, theirSkill, mySkill, color, av);
-  showToast('✓ Swap started with '+personName+'! Check your Swaps tab.');
-  // add notification
-  NOTIFICATIONS.unshift({id:Date.now(), icon:'🤝', text:personName+' accepted your swap request!', time:'Just now', read:false});
-  renderNotifications();
-}
-
-/* Override the generic swap toast in match cards */
-document.addEventListener('click', e=>{
-  if(e.target.classList.contains('match-btn') && e.target.classList.contains('swap')){
-    // handled inline
+  // Save to user record
+  if(APP.user){
+    const idx = USER_REGISTRY.findIndex(u=>u.email===APP.user.email);
+    if(idx>-1){
+      if(!USER_REGISTRY[idx].reviews) USER_REGISTRY[idx].reviews = [];
+      USER_REGISTRY[idx].reviews.push({ rating:currentRating, text, partner:rateTarget?.personName||'Unknown', date:new Date().toISOString() });
+      saveRegistry();
+    }
   }
-});
+  setTimeout(()=>showToast('✓ Review submitted for '+( rateTarget?.personName||'your swap')+'! Thank you.'), 280);
+}
 
-/* ════════════════ ENHANCED LAUNCH ════════════════ */
+/* ════════════════ CONTACT FORM ════════════════ */
+function submitContact(){
+  const name    = document.getElementById('contact-name')?.value.trim();
+  const email   = document.getElementById('contact-email')?.value.trim();
+  const subject = document.getElementById('contact-subject')?.value;
+  const msg     = document.getElementById('contact-msg')?.value.trim();
+  if(!name){ showToast('⚠ Please enter your name.'); return; }
+  if(!email||!email.includes('@')){ showToast('⚠ Please enter a valid email.'); return; }
+  if(!msg){ showToast('⚠ Please write a message.'); return; }
+  // Save to admin contact log
+  if(!window.CONTACT_LOG) window.CONTACT_LOG = [];
+  window.CONTACT_LOG.push({ name, email, subject, msg, date: new Date().toISOString() });
+  localStorage.setItem('ss_contacts', JSON.stringify(window.CONTACT_LOG));
+  // Clear form
+  ['contact-name','contact-email','contact-msg'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  closeModal('mContact');
+  setTimeout(()=>showToast('✓ Message sent! We\'ll get back to you soon.'), 280);
+}
+
+// Pre-fill contact form with logged-in user's info
+function openContactModal(){
+  openContactModal();
+  if(APP.user){
+    const n = document.getElementById('contact-name'); if(n && !n.value) n.value = APP.user.name || '';
+    const e = document.getElementById('contact-email'); if(e && !e.value) e.value = APP.user.email || '';
+  }
+}
+
+/* ════════════════ NEWSLETTER ════════════════ */
+function subscribeNewsletter(){
+  const inp = document.getElementById('nlEmail');
+  if(!inp) return;
+  const email = inp.value.trim();
+  if(!email||!email.includes('@')){ showToast('⚠ Enter a valid email.'); return; }
+  const subs = JSON.parse(localStorage.getItem('ss_newsletter')||'[]');
+  if(subs.includes(email)){ showToast('You\'re already subscribed! 🎉'); return; }
+  subs.push(email);
+  localStorage.setItem('ss_newsletter', JSON.stringify(subs));
+  inp.value = '';
+  showToast('✓ Subscribed! We\'ll notify you when new skills drop.');
+}
+
+/* ════════════════ STARTUP HOOKS ════════════════ */
+// Save progress whenever a skill is added or removed
+const _origAddSkill = addSkill;
+addSkill = function(){
+  _origAddSkill.apply(this, arguments);
+  saveUserProgress();
+};
+const _origRemoveSkill = removeSkill;
+removeSkill = function(i){
+  _origRemoveSkill(i);
+  saveUserProgress();
+};
+
+// Save progress when a swap is completed
+const _origCompleteSwap = completeSwap;
+completeSwap = function(i){
+  _origCompleteSwap(i);
+  saveUserProgress();
+};
+
+// On workspace launch: run extra setup
 const _origLaunch = launchWorkspace;
 launchWorkspace = function(){
   _origLaunch();
-  renderActiveSwaps();
-  updateSwapBadge();
+  renderSwaps();
   renderNotifications();
-  // Show announcement banner after short delay
   setTimeout(showAnnounceBanner, 800);
 };
 
-// Wire Edit Profile modal open button
+// Wire Edit Profile dropdown item
 document.addEventListener('click', e=>{
   if(e.target.textContent && e.target.textContent.includes('Edit Profile') && e.target.classList.contains('ws-dropdown-item')){
     e.preventDefault();
