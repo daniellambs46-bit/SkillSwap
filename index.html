@@ -1425,54 +1425,144 @@ section{padding:80px 52px}
 .ws-dropdown-item:hover{background:var(--bg2);color:var(--t1)}
 .ws-logout{color:#dc2626 !important}
 .ws-logout:hover{background:#fef2f2 !important}
-.ws-body{padding:90px 32px 40px;display:none}
+/* ═══ WORKSPACE — DARK THEME ═══ */
+#wsPage{background:#0b1120;min-height:100vh}
+.ws-body{padding:90px 32px 60px;display:none;min-height:100vh}
 .ws-body.active{display:block}
-.ws-welcome{font-family:'Playfair Display',serif;font-weight:800;font-size:1.75rem;color:var(--dark);letter-spacing:-.02em;margin-bottom:4px}
-.ws-welcome em{font-style:italic;color:var(--accent)}
-.ws-sub{font-size:.88rem;color:var(--t2);margin-bottom:32px}
-.ws-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}
-.ws-stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
-.ws-stat-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--dark);line-height:1}
-.ws-stat-lbl{font-size:.72rem;color:var(--t3);margin-top:4px}
-.ws-stat-icon{font-size:1.4rem;margin-bottom:8px}
-.ws-2col{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
-.ws-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
-.ws-card-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--dark);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
-.ws-card-title button{background:var(--accent);color:#fff;border:none;padding:5px 12px;border-radius:var(--r-sm);font-size:.72rem;font-weight:600;cursor:pointer}
-.ws-skill-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+
+/* Profile hero */
+.ws-profile-hero{
+  background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08),rgba(34,211,238,.06));
+  border:1px solid rgba(59,130,246,.18);
+  border-radius:20px;padding:24px 28px;margin-bottom:24px;
+  display:flex;align-items:center;gap:20px;position:relative;overflow:hidden;
+  backdrop-filter:blur(10px);
+}
+.ws-profile-hero::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.1),transparent 70%);
+  pointer-events:none;
+}
+.ws-profile-av-wrap{position:relative;cursor:pointer;flex-shrink:0}
+.ws-profile-av{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:1.4rem;color:#fff;
+  border:3px solid rgba(34,211,238,.4);
+  box-shadow:0 0 20px rgba(59,130,246,.4);
+  overflow:hidden;position:relative;
+}
+.ws-profile-av img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.ws-av-upload{
+  position:absolute;bottom:-2px;right:-2px;
+  width:22px;height:22px;border-radius:50%;
+  background:#3b82f6;border:2px solid #0b1120;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;cursor:pointer;color:#fff;
+}
+.ws-profile-info{flex:1;min-width:0}
+.ws-profile-name{font-family:'Playfair Display',serif;font-weight:800;font-size:1.35rem;color:#e2e8f0;line-height:1.2;margin-bottom:4px}
+.ws-profile-email{font-size:.8rem;color:#475569;margin-bottom:8px}
+.ws-profile-meta{display:flex;gap:10px;flex-wrap:wrap}
+.ws-profile-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.72rem;font-weight:600;
+  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);
+  color:#60a5fa;border-radius:9999px;padding:3px 10px;
+}
+.ws-points-badge{
+  display:flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(234,179,8,.08));
+  border:1px solid rgba(245,158,11,.3);border-radius:12px;
+  padding:8px 14px;margin-left:auto;flex-shrink:0;text-align:center;
+}
+.ws-points-val{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5rem;color:#fbbf24;line-height:1}
+.ws-points-lbl{font-size:.62rem;color:#92400e;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* Stat cards */
+.ws-welcome{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5rem;color:#e2e8f0;letter-spacing:-.02em;margin-bottom:2px}
+.ws-welcome em{font-style:italic;color:#22d3ee}
+.ws-sub{font-size:.84rem;color:#475569;margin-bottom:20px}
+.ws-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.ws-stat{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;padding:18px;
+  cursor:default;transition:all .22s;position:relative;overflow:hidden;
+}
+.ws-stat:hover{border-color:rgba(59,130,246,.25);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.ws-stat-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:#e2e8f0;line-height:1}
+.ws-stat-lbl{font-size:.7rem;color:#475569;margin-top:5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.ws-stat-icon{font-size:1.3rem;margin-bottom:10px}
+
+/* Cards */
+.ws-2col{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.ws-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;padding:22px;
+  transition:border-color .2s;
+}
+.ws-card:hover{border-color:rgba(59,130,246,.15)}
+.ws-card-title{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:1rem;color:#e2e8f0;
+  margin-bottom:16px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.ws-card-title button{
+  background:rgba(59,130,246,.15);color:#60a5fa;
+  border:1px solid rgba(59,130,246,.25);
+  padding:5px 12px;border-radius:8px;
+  font-size:.72rem;font-weight:600;cursor:pointer;
+  transition:all .18s;display:inline-flex;align-items:center;gap:4px;
+}
+.ws-card-title button:hover{background:rgba(59,130,246,.25);color:#93c5fd}
+
+/* Skill rows */
+.ws-skill-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04)}
 .ws-skill-row:last-child{border-bottom:none}
-.ws-skill-icon{width:38px;height:38px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ws-skill-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
 .ws-skill-info{flex:1}
-.ws-skill-name{font-weight:600;font-size:.86rem;color:var(--dark)}
-.ws-skill-meta{font-size:.72rem;color:var(--t3);margin-top:1px}
-.ws-skill-badge{padding:3px 9px;border-radius:var(--r-full);font-size:.66rem;font-weight:600}
-.ws-skill-badge.offered{background:var(--acc-lit);color:var(--accent)}
-.ws-skill-badge.seeking{background:var(--grn-lit);color:var(--green)}
-.match-card{padding:14px 0;border-bottom:1px solid var(--border)}
+.ws-skill-name{font-weight:600;font-size:.86rem;color:#e2e8f0}
+.ws-skill-meta{font-size:.72rem;color:#475569;margin-top:1px}
+.ws-skill-badge{padding:3px 9px;border-radius:9999px;font-size:.66rem;font-weight:600}
+.ws-skill-badge.offered{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.ws-skill-badge.seeking{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+
+/* Match cards */
+.match-card{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.04)}
 .match-card:last-child{border-bottom:none}
 .match-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .match-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0}
 .match-info{flex:1}
-.match-name{font-weight:600;font-size:.86rem;color:var(--dark)}
-.match-meta{font-size:.72rem;color:var(--t3)}
-.match-pct{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--green)}
-.match-bar-sm{height:4px;background:var(--bg2);border-radius:var(--r-full);margin-bottom:8px}
-.match-bar-fill-sm{height:4px;background:var(--green);border-radius:var(--r-full)}
+.match-name{font-weight:600;font-size:.86rem;color:#e2e8f0}
+.match-meta{font-size:.72rem;color:#475569}
+.match-pct{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:#22c55e}
+.match-bar-sm{height:3px;background:rgba(255,255,255,.06);border-radius:9999px;margin-bottom:8px}
+.match-bar-fill-sm{height:3px;background:linear-gradient(90deg,#22c55e,#22d3ee);border-radius:9999px}
 .match-actions{display:flex;gap:7px}
-.match-btn{padding:6px 12px;border-radius:var(--r-sm);font-size:.75rem;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all .18s}
-.match-btn.swap{background:var(--accent);color:#fff}
-.match-btn.swap:hover{background:var(--acc-h)}
-.match-btn.skip{background:transparent;color:var(--t2);border:1px solid var(--border)}
-.match-btn.skip:hover{border-color:var(--border2);color:var(--t1)}
-.ws-activity-item{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--border)}
+.match-btn{padding:7px 14px;border-radius:8px;font-size:.75rem;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all .18s;display:inline-flex;align-items:center;gap:5px}
+.match-btn.swap{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;box-shadow:0 0 12px rgba(59,130,246,.25)}
+.match-btn.swap:hover{transform:translateY(-1px);box-shadow:0 0 20px rgba(59,130,246,.4)}
+.match-btn.skip{background:rgba(255,255,255,.04);color:#64748b;border:1px solid rgba(255,255,255,.07)}
+.match-btn.skip:hover{color:#94a3b8;border-color:rgba(255,255,255,.12)}
+
+/* Activity */
+.ws-activity-item{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:flex-start}
 .ws-activity-item:last-child{border-bottom:none}
-.ws-act-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0}
-.ws-act-txt{font-size:.8rem;color:var(--t2);line-height:1.5;flex:1}
-.ws-act-txt strong{color:var(--dark);font-weight:600}
-.ws-act-time{font-size:.68rem;color:var(--t3);white-space:nowrap;margin-top:2px}
-.empty-state{text-align:center;padding:48px 24px;color:var(--t3)}
-.empty-state .es-icon{font-size:2.5rem;margin-bottom:12px}
-.empty-state p{font-size:.86rem;line-height:1.6}
+.ws-act-icon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:1px}
+.ws-act-txt{font-size:.8rem;color:#64748b;line-height:1.5;flex:1}
+.ws-act-txt strong{color:#94a3b8;font-weight:600}
+.ws-act-time{font-size:.68rem;color:#334155;white-space:nowrap;margin-top:2px}
+
+/* Empty states */
+.empty-state{text-align:center;padding:40px 24px;color:#334155}
+.empty-state .es-icon{font-size:2.5rem;margin-bottom:12px;opacity:.6}
+.empty-state p{font-size:.86rem;line-height:1.6;color:#475569}
 .empty-state button{margin-top:16px}
 
 /* browse tab inside workspace */
@@ -1561,10 +1651,9 @@ section{padding:80px 52px}
     <li><a onclick="smoothTo('community')">Community</a></li>
   </ul>
   <div class="nav-r">
-    <button class="btn-outline" onclick="openModal('mLogin')">Log in</button>
+    <button class="btn-outline" onclick="openModal('mLogin')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Log in</span></button>
     <button class="btn-outline" id="mySpaceBtn" style="display:none;border-color:var(--green);color:var(--green)" onclick="showPage('wsPage')">My Space →</button>
-    <button class="btn-cta" onclick="openModal('mOnboard')">Get Started</button>
-    <button class="btn-outline" style="border-color:rgba(217,79,10,.4);color:var(--accent);font-size:.78rem" onclick="goAdmin()">⚙️ Admin</button>
+    <button class="btn-cta" onclick="openModal('mOnboard')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Get Started</span></button>
     <!-- Hamburger — mobile only -->
     <button id="mobileMenuBtn" onclick="toggleMobileMenu()" style="background:transparent;border:1.5px solid var(--border2);border-radius:var(--r-sm);width:38px;height:38px;display:none;align-items:center;justify-content:center;cursor:pointer;flex-direction:column;gap:5px;padding:8px">
       <span style="display:block;width:18px;height:2px;background:var(--dark);border-radius:2px;transition:all .2s"></span>
@@ -1576,11 +1665,11 @@ section{padding:80px 52px}
 
 <!-- Mobile menu dropdown -->
 <div id="mobileMenu">
-  <a onclick="smoothTo('search');closeMobileMenu()">🔍 Browse Skills</a>
+  <a onclick="smoothTo('search');closeMobileMenu()"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Browse Skills</span></a>
   <a onclick="smoothTo('how');closeMobileMenu()">💡 How It Works</a>
   <a onclick="smoothTo('community');closeMobileMenu()">👥 Community</a>
-  <a onclick="openModal('mLogin');closeMobileMenu()">🔑 Log In</a>
-  <a onclick="openModal('mOnboard');closeMobileMenu()" style="color:var(--accent)">🚀 Get Started — Free</a>
+  <a onclick="openModal('mLogin');closeMobileMenu()"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Log In</span></a>
+  <a onclick="openModal('mOnboard');closeMobileMenu()" style="color:var(--accent)"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>Get Started — Free</span></a>
 </div>
 
 <!-- HERO -->
@@ -1590,8 +1679,8 @@ section{padding:80px 52px}
     <h1>Trade skills.<br>Grow <em>together.</em></h1>
     <p class="hero-p">The peer-to-peer marketplace where your expertise is the currency. Teach what you know, learn what you don't. No money. Just knowledge.</p>
     <div class="hero-btns">
-      <button class="btn primary" onclick="openModal('mOnboard')">List Your Skill — Free</button>
-      <button class="btn ghost" onclick="smoothTo('search')">Browse Trades</button>
+      <button class="btn primary" onclick="openModal('mOnboard')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>List Your Skill — Free</span></button>
+      <button class="btn ghost" onclick="smoothTo('search')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Browse Trades</span></button>
     </div>
     <div class="trust-row">
       <div class="av-stack">
@@ -1803,7 +1892,7 @@ section{padding:80px 52px}
     <div><h4 style="font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px">Company</h4><ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li><a onclick="openAboutModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">About Us</a></li><li><a onclick="openPrivacyModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Privacy Policy</a></li><li><a onclick="openContactModal()" style="font-size:.83rem;color:rgba(255,255,255,.48);cursor:pointer">Contact</a></li></ul></div>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)">
-    <div style="font-size:.76rem;color:rgba(255,255,255,.28)">© 2026 SkillSwap · Built with knowledge, not capital</div>
+    <a onclick="goAdmin()" style="font-size:.76rem;color:rgba(255,255,255,.28);cursor:pointer;text-decoration:none;transition:color .2s" onmouseover="this.style.color='rgba(34,211,238,.6)'" onmouseout="this.style.color='rgba(255,255,255,.28)'">© 2026 SkillSwap · Built with knowledge, not capital</a>
     <div style="display:flex;gap:8px">
       <a onclick="showToast('Following on X…')" style="width:32px;height:32px;border-radius:var(--r-sm);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:600;color:rgba(255,255,255,.38);cursor:pointer">𝕏</a>
       <a onclick="showToast('Opening LinkedIn…')" style="width:32px;height:32px;border-radius:var(--r-sm);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:600;color:rgba(255,255,255,.38);cursor:pointer">in</a>
@@ -1864,7 +1953,7 @@ section{padding:80px 52px}
           <button class="ws-dropdown-item" onclick="showWsTab('community',null);closeUserMenu()">💬 Messages</button>
           <div class="ws-dropdown-divider"></div>
           <button class="ws-dropdown-item" onclick="openModal('mEditProfile');closeUserMenu()">✏️ Edit Profile</button>
-          <button class="ws-dropdown-item" onclick="openModal('mAddSkill');closeUserMenu()">+ Add a Skill</button>
+          <button class="ws-dropdown-item" onclick="openModal('mAddSkill');closeUserMenu()"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a Skill</span></button>
           <button class="ws-dropdown-item" onclick="goLanding();closeUserMenu()">← Back to Home</button>
           <div class="ws-dropdown-divider"></div>
           <button class="ws-dropdown-item ws-logout" onclick="doLogout()">Log Out</button>
@@ -1875,59 +1964,135 @@ section{padding:80px 52px}
 
   <!-- DASHBOARD TAB -->
   <div class="ws-body active" id="tab-dashboard">
+
     <!-- Admin announcement banner -->
-    <div id="announceBanner" style="display:none;background:linear-gradient(135deg,var(--acc-lit),#fff);border:1px solid rgba(217,79,10,.2);border-radius:var(--r);padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:14px">
-      <span style="font-size:1.4rem">📢</span>
-      <div style="flex:1"><div style="font-weight:700;font-size:.9rem;color:var(--dark)" id="bannerTitle">New announcement</div><div style="font-size:.8rem;color:var(--t2);margin-top:2px" id="bannerBody">—</div></div>
-      <button onclick="document.getElementById('announceBanner').style.display='none'" style="background:transparent;border:none;color:var(--t3);font-size:1.2rem;cursor:pointer;line-height:1">×</button>
+    <div id="announceBanner" style="display:none;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(34,211,238,.08));border:1px solid rgba(59,130,246,.2);border-radius:var(--r);padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:1.3rem">📢</span>
+      <div style="flex:1"><div style="font-weight:700;font-size:.88rem;color:#e2e8f0" id="bannerTitle">New announcement</div><div style="font-size:.78rem;color:#64748b;margin-top:2px" id="bannerBody">—</div></div>
+      <button onclick="document.getElementById('announceBanner').style.display='none'" style="background:transparent;border:none;color:#475569;font-size:1.2rem;cursor:pointer;line-height:1">×</button>
     </div>
+
+    <!-- ── PROFILE HERO ── -->
+    <div class="ws-profile-hero">
+      <div class="ws-profile-av-wrap" onclick="triggerAvatarUpload()" title="Change photo">
+        <div class="ws-profile-av" id="wsProfileAv">
+          <span id="wsProfileInitials">?</span>
+          <img id="wsProfileImg" src="" style="display:none" alt="Profile" />
+        </div>
+        <div class="ws-av-upload" title="Upload photo">📷</div>
+        <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)" />
+      </div>
+      <div class="ws-profile-info">
+        <div class="ws-profile-name" id="wsProfileName">Your Name</div>
+        <div class="ws-profile-email" id="wsProfileEmail">—</div>
+        <div class="ws-profile-meta">
+          <span class="ws-profile-tag" id="wsProfileSkillTag">🎯 General Workspace</span>
+          <span class="ws-profile-tag" id="wsProfileWsId" style="color:#475569;border-color:rgba(255,255,255,.06);background:rgba(255,255,255,.03)">🆔 —</span>
+          <span class="ws-profile-tag" style="color:#22d3ee;border-color:rgba(34,211,238,.2);background:rgba(34,211,238,.06)" id="wsProfileJoined">📅 —</span>
+        </div>
+      </div>
+      <div class="ws-points-badge">
+        <div>
+          <div class="ws-points-val" id="wsPoints">0</div>
+          <div class="ws-points-lbl">⭐ Points</div>
+        </div>
+      </div>
+      <button onclick="openModal('mEditProfile')" style="margin-left:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 16px;color:#94a3b8;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px;flex-shrink:0" onmouseover="this.style.background='rgba(59,130,246,.1)';this.style.borderColor='rgba(59,130,246,.25)';this.style.color='#60a5fa'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.color='#94a3b8'">
+        ✏️ Edit Profile
+      </button>
+    </div>
+
+    <!-- ── STAT CARDS ── -->
     <div class="ws-welcome">Welcome back, <em id="wsFirstName">there</em> 👋</div>
-    <p class="ws-sub" id="wsSub">Your learning space is ready.</p>
-    <!-- Skill workspace badge — updated on login -->
-    <div id="wsSkillBadge" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc-lit);border:1px solid rgba(217,79,10,.2);border-radius:var(--r-full);padding:6px 14px;margin-bottom:20px;font-size:.8rem;font-weight:700;color:var(--accent)">
-      <span id="wsSkillBadgeIcon">🎯</span>
-      <span id="wsSkillBadgeName">General Workspace</span>
-      <span style="font-size:.72rem;font-weight:400;color:var(--t3)" id="wsWorkspaceId"></span>
-    </div>
+    <p class="ws-sub" id="wsSub">Your personal workspace is ready.</p>
+
     <div class="ws-stats">
-      <div class="ws-stat"><div class="ws-stat-icon">📚</div><div class="ws-stat-val" id="statSkills">0</div><div class="ws-stat-lbl">Skills listed</div></div>
-      <div class="ws-stat" style="cursor:pointer" onclick="showWsTab('swaps',null)"><div class="ws-stat-icon">🤝</div><div class="ws-stat-val" id="statSwaps">0</div><div class="ws-stat-lbl">Active swaps</div></div>
-      <div class="ws-stat"><div class="ws-stat-icon">⭐</div><div class="ws-stat-val" id="statRating">—</div><div class="ws-stat-lbl">Your rating</div></div>
-      <div class="ws-stat" style="cursor:pointer" onclick="showWsTab('matches',null)"><div class="ws-stat-icon">🔔</div><div class="ws-stat-val" id="statMatches">3</div><div class="ws-stat-lbl">New matches</div></div>
+      <div class="ws-stat" onclick="showWsTab('myskills',null)" style="cursor:pointer">
+        <div class="ws-stat-icon">📚</div>
+        <div class="ws-stat-val" id="statSkills">0</div>
+        <div class="ws-stat-lbl">Skills Listed</div>
+      </div>
+      <div class="ws-stat" onclick="showWsTab('swaps',null)" style="cursor:pointer">
+        <div class="ws-stat-icon">🤝</div>
+        <div class="ws-stat-val" id="statSwaps">0</div>
+        <div class="ws-stat-lbl">Active Swaps</div>
+      </div>
+      <div class="ws-stat">
+        <div class="ws-stat-icon">⭐</div>
+        <div class="ws-stat-val" id="statRating">—</div>
+        <div class="ws-stat-lbl">Your Rating</div>
+      </div>
+      <div class="ws-stat" onclick="showWsTab('matches',null)" style="cursor:pointer">
+        <div class="ws-stat-icon">✨</div>
+        <div class="ws-stat-val" id="statMatches">0</div>
+        <div class="ws-stat-lbl">New Matches</div>
+      </div>
     </div>
-    <div class="ws-2col">
+
+    <!-- ── MAIN GRID ── -->
+    <div class="ws-2col" style="margin-bottom:18px">
       <div class="ws-card">
-        <div class="ws-card-title">Your Skills <button onclick="showWsTab('myskills',null)">Manage →</button></div>
-        <div id="dashSkillList"><div class="empty-state"><div class="es-icon">📭</div><p>No skills listed yet. Add your first skill to start getting matched.</p><button class="btn primary btn-sm" onclick="openModal('mAddSkill')">+ Add a Skill</button></div></div>
+        <div class="ws-card-title">
+          <span>📚 Your Skills</span>
+          <button onclick="showWsTab('myskills',null)">→ Manage</button>
+        </div>
+        <div id="dashSkillList">
+          <div class="empty-state">
+            <div class="es-icon">📭</div>
+            <p>No skills listed yet. Add your first skill to start getting matched.</p>
+            <button class="btn primary btn-sm" onclick="openModal('mAddSkill')" style="display:inline-flex;align-items:center;gap:6px"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a Skill</span></button>
+          </div>
+        </div>
       </div>
       <div class="ws-card">
-        <div class="ws-card-title">Top Matches <button onclick="showWsTab('matches',null)">See all →</button></div>
-        <div id="dashMatchList"></div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px">
-      <div class="ws-card">
-        <div class="ws-card-title">Active Swaps <button onclick="showWsTab('swaps',null)">View all →</button></div>
-        <div id="dashSwapList"><div style="text-align:center;padding:20px;color:var(--t3);font-size:.84rem">No active swaps yet.</div></div>
-      </div>
-      <div class="ws-card">
-        <div class="ws-card-title">Recent Activity</div>
-        <div id="dashActivity">
-          <div class="ws-activity-item"><div class="ws-act-icon" style="background:var(--grn-lit);color:var(--green)">✓</div><div><div class="ws-act-txt"><strong>Account created</strong> — welcome to SkillSwap!</div><div class="ws-act-time">Just now</div></div></div>
-          <div class="ws-activity-item"><div class="ws-act-icon" style="background:var(--acc-lit);color:var(--accent)">🎯</div><div><div class="ws-act-txt">3 new matches are waiting for you</div><div class="ws-act-time">Just now</div></div></div>
+        <div class="ws-card-title">
+          <span>✨ Top Matches</span>
+          <button onclick="showWsTab('matches',null)">→ See all</button>
+        </div>
+        <div id="dashMatchList">
+          <div class="empty-state"><div class="es-icon">🔍</div><p>Add a skill to see your matches.</p></div>
         </div>
       </div>
     </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div class="ws-card">
+        <div class="ws-card-title">
+          <span>🤝 Active Swaps</span>
+          <button onclick="showWsTab('swaps',null)">→ View all</button>
+        </div>
+        <div id="dashSwapList">
+          <div class="empty-state" style="padding:20px">
+            <div class="es-icon">🤝</div>
+            <p>No active swaps yet.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ws-card">
+        <div class="ws-card-title"><span>⚡ Recent Activity</span></div>
+        <div id="dashActivity">
+          <div class="ws-activity-item">
+            <div class="ws-act-icon" style="background:rgba(34,197,94,.12);color:#4ade80">✓</div>
+            <div><div class="ws-act-txt"><strong>Account created</strong> — welcome to SkillSwap!</div><div class="ws-act-time">Just now</div></div>
+          </div>
+          <div class="ws-activity-item">
+            <div class="ws-act-icon" style="background:rgba(59,130,246,.12);color:#60a5fa">🎯</div>
+            <div><div class="ws-act-txt">Your personal workspace has been generated</div><div class="ws-act-time">Just now</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- MY SKILLS TAB -->
   <div class="ws-body" id="tab-myskills">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
       <div><div class="eyebrow">My Skills</div><h2 class="sec-title" style="font-size:1.6rem;margin-bottom:0">Skills you're offering & seeking</h2></div>
-      <button class="btn primary" onclick="openModal('mAddSkill')">+ Add a Skill</button>
+      <button class="btn primary" onclick="openModal('mAddSkill')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a Skill</span></button>
     </div>
     <div id="mySkillsList">
-      <div class="empty-state"><div class="es-icon">🎯</div><p>You haven't listed any skills yet.<br>Add your first skill to start getting matched with traders.</p><button class="btn primary btn-sm" onclick="openModal('mAddSkill')">+ Add a Skill</button></div>
+      <div class="empty-state"><div class="es-icon">🎯</div><p>You haven't listed any skills yet.<br>Add your first skill to start getting matched with traders.</p><button class="btn primary btn-sm" onclick="openModal('mAddSkill')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a Skill</span></button></div>
     </div>
   </div>
 
@@ -2153,7 +2318,7 @@ section{padding:80px 52px}
       <div class="mfield"><label>Email Address <span style="color:var(--accent)">*</span></label><input type="email" id="ob-email" placeholder="you@gmail.com" /></div>
       <div class="mfield"><label>Password <span style="color:var(--accent)">*</span></label><input type="password" id="ob-pass" placeholder="Min. 8 characters" /></div>
 
-      <button class="modal-btn" onclick="obNext(1)">Continue →</button>
+      <button class="modal-btn" onclick="obNext(1)"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Continue</span></button>
       <div class="modal-link">Already have an account? <a onclick="closeModal('mOnboard');openModal('mLogin')">Log in</a></div>
     </div>
 
@@ -2210,7 +2375,7 @@ section{padding:80px 52px}
         </div>
       </div>
       <div id="skillCatError" style="color:var(--accent);font-size:.8rem;text-align:center;margin-bottom:10px;display:none">⚠ Please select a skill category</div>
-      <button class="modal-btn" onclick="obNext(2)">Continue →</button>
+      <button class="modal-btn" onclick="obNext(2)"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Continue</span></button>
     </div>
 
     <!-- STEP 3: What to learn -->
@@ -2218,7 +2383,7 @@ section{padding:80px 52px}
       <h3>What do you want to learn?</h3>
       <p class="modal-sub">Pick skills you want to learn in return.</p>
       <div class="skill-pick-grid" id="seekGrid"></div>
-      <button class="modal-btn" onclick="finishOnboard()">Create My Workspace →</button>
+      <button class="modal-btn" onclick="finishOnboard()"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>Create My Workspace</span></button>
     </div>
   </div>
 </div>
@@ -2256,7 +2421,7 @@ section{padding:80px 52px}
 
     <div class="mfield"><label>Email</label><input type="email" id="login-email" placeholder="you@gmail.com" /></div>
     <div class="mfield"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••" /></div>
-    <button class="modal-btn" onclick="doLogin()">Sign In →</button>
+    <button class="modal-btn" onclick="doLogin()"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In</span></button>
 
     <div class="oauth-footer">
       <span>Don't have an account?</span>
@@ -2574,6 +2739,8 @@ function saveUserProgress(){
   const idx = USER_REGISTRY.findIndex(u=>u.email===APP.user.email);
   if(idx > -1){
     USER_REGISTRY[idx].skills      = APP.skills;
+    USER_REGISTRY[idx].points      = APP.user.points || 0;
+    USER_REGISTRY[idx].avatar      = APP.user.avatar || '';
     USER_REGISTRY[idx].seeking     = APP.user.seeking || [];
     USER_REGISTRY[idx].lastLogin   = new Date().toISOString();
     USER_REGISTRY[idx].activeSwaps = ACTIVE_SWAPS.length;
@@ -2865,6 +3032,8 @@ async function doLogin(){
       lastLogin:         new Date().toISOString(),
     };
     APP.skills = localUser.skills || [];
+    APP.user.points = localUser.points || 0;
+    APP.user.avatar = localUser.avatar || '';
     // Update last login
     localUser.lastLogin = new Date().toISOString();
     saveRegistry();
@@ -2913,57 +3082,99 @@ async function doLogin(){
 /* ════════════════ WORKSPACE LAUNCH ════════════════ */
 function launchWorkspace(){
   const u = APP.user;
+
+  // ── Nav
   ['wsAvatar','wsAvatarDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=u.initials; });
   ['wsName','wsNameDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=u.name; });
   ['wsEmail','wsEmailDrop'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=u.email; });
-  document.getElementById('wsFirstName').textContent = u.name.split(' ')[0];
 
-  // Show skill-based workspace label
-  const skillLabel = u.primaryCategory ? u.primaryCategory.cat.charAt(0).toUpperCase()+u.primaryCategory.cat.slice(1) : 'General';
-  document.getElementById('wsSub').textContent = u.email + ' · ' + skillLabel + ' Workspace';
+  // ── Profile hero
+  const piEl=document.getElementById('wsProfileInitials');
+  const imgEl=document.getElementById('wsProfileImg');
+  if(piEl) piEl.textContent=u.initials||'?';
+  if(imgEl && u.avatar){ imgEl.src=u.avatar; imgEl.style.display='block'; if(piEl) piEl.style.display='none'; }
+  const pnEl=document.getElementById('wsProfileName'); if(pnEl) pnEl.textContent=u.name;
+  const peEl=document.getElementById('wsProfileEmail'); if(peEl) peEl.textContent=u.email;
 
-  // Apply workspace accent color based on primary skill
-  if(u.primaryCategory && u.primaryCategory.col){
-    document.documentElement.style.setProperty('--accent', u.primaryCategory.col);
-    document.documentElement.style.setProperty('--acc-h',  u.primaryCategory.col);
-    document.documentElement.style.setProperty('--acc-lit', u.primaryCategory.bg||'#fff2ec');
+  // ── Skill & workspace info
+  const ci = getCatInfo(u.primaryCategory?.cat||'');
+  const skillLabel = u.primaryCategory
+    ? ci.icon+' '+u.primaryCategory.cat.charAt(0).toUpperCase()+u.primaryCategory.cat.slice(1)+' Workspace'
+    : '🎯 General Workspace';
+
+  const stEl=document.getElementById('wsProfileSkillTag'); if(stEl) stEl.textContent=skillLabel;
+  const wiEl=document.getElementById('wsProfileWsId'); if(wiEl&&u.workspaceId) wiEl.textContent='🆔 '+u.workspaceId.substring(3,15);
+  const jnEl=document.getElementById('wsProfileJoined');
+  if(jnEl&&u.joinedAt) jnEl.textContent='📅 Joined '+new Date(u.joinedAt).toLocaleDateString('en',{month:'short',year:'numeric'});
+
+  // ── Points
+  const pts=document.getElementById('wsPoints'); if(pts) pts.textContent=u.points||0;
+
+  // ── Welcome text
+  document.getElementById('wsFirstName').textContent=u.name.split(' ')[0];
+  document.getElementById('wsSub').textContent=skillLabel+' · '+u.email;
+
+  // ── Apply workspace colour
+  if(u.primaryCategory?.col){
+    document.documentElement.style.setProperty('--accent',u.primaryCategory.col);
+    document.documentElement.style.setProperty('--acc-h',u.primaryCategory.col);
+    document.documentElement.style.setProperty('--acc-lit',u.primaryCategory.bg||'#fff2ec');
   }
 
-  // Update skill workspace badge
-  const catInfo = {programming:{icon:'💻'},design:{icon:'🎨'},music:{icon:'🎵'},business:{icon:'💼'},education:{icon:'📚'},sports:{icon:'⚽'},photography:{icon:'📷'},languages:{icon:'🌍'},wellness:{icon:'🧘'},technology:{icon:'⚙️'},creative:{icon:'✏️'},cooking:{icon:'🍳'}};
-  const badgeIcon = document.getElementById('wsSkillBadgeIcon');
-  const badgeName = document.getElementById('wsSkillBadgeName');
-  const badgeWsId = document.getElementById('wsWorkspaceId');
-  if(badgeIcon) badgeIcon.textContent = (u.primaryCategory && catInfo[u.primaryCategory.cat]) ? catInfo[u.primaryCategory.cat].icon : '🎯';
-  if(badgeName) badgeName.textContent = skillLabel + ' Workspace';
-  if(badgeWsId && u.workspaceId) badgeWsId.textContent = '· ' + u.workspaceId.substring(0,12) + '…';
-
-  if(u.offered && u.offered.length > 0 && APP.skills.length === 0){
-    u.offered.forEach(key=>{
-      const s = ALL_SKILLS.find(x=>x.key===key);
-      if(s) APP.skills.push({name:s.key, cat:s.cat, icon:s.icon, desc:s.desc, wants:'Open to offers', bg:s.bg});
-    });
+  if(u.offered&&u.offered.length>0&&APP.skills.length===0){
+    u.offered.forEach(key=>{ const s=ALL_SKILLS.find(x=>x.key===key); if(s) APP.skills.push({name:s.key,cat:s.cat,icon:s.icon,desc:s.desc,wants:'Open to offers',bg:s.bg,col:s.col,av:u.initials,rating:'—',reviews:0}); });
   }
 
-  renderDashboard();
-  renderMySkills();
-  renderMatches();
-  renderBrowse();
-  renderSwaps();
-  buildLibCatTabs();
-  renderLibrary();
-  renderCommunity();
-  showWsTab('dashboard', document.querySelector('.ws-tab'));
-  const msBtn = document.getElementById('mySpaceBtn');
-  if(msBtn) msBtn.style.display = '';
+  // ── Award login points
+  awardPoints(10,'Login bonus');
+
+  renderDashboard(); renderMySkills(); renderMatches(); renderBrowse();
+  renderSwaps(); buildLibCatTabs(); renderLibrary(); renderCommunity();
+  showWsTab('dashboard',document.querySelector('.ws-tab'));
+  const msBtn=document.getElementById('mySpaceBtn'); if(msBtn) msBtn.style.display='';
   showPage('wsPage');
-
-  // Auto-save progress every 60 seconds
   if(window._autoSaveInterval) clearInterval(window._autoSaveInterval);
-  window._autoSaveInterval = setInterval(saveUserProgress, 60000);
-
-  showToast('✓ Welcome to your ' + skillLabel + ' workspace, ' + u.name.split(' ')[0] + '!');
+  window._autoSaveInterval=setInterval(saveUserProgress,60000);
+  showToast('✅ Welcome to your '+skillLabel+', '+u.name.split(' ')[0]+'!');
 }
+
+function getCatInfo(cat){
+  const map={programming:{icon:'💻',col:'#1e40af',bg:'#eff6ff'},design:{icon:'🎨',col:'#7c3aed',bg:'#fdf4ff'},music:{icon:'🎵',col:'#92400e',bg:'#fff7ed'},business:{icon:'💼',col:'#166534',bg:'#f0fdf4'},education:{icon:'📚',col:'#5b21b6',bg:'#f5f3ff'},sports:{icon:'⚽',col:'#0e7490',bg:'#ecfeff'},photography:{icon:'📷',col:'#be123c',bg:'#fff1f2'},languages:{icon:'🌍',col:'#065f46',bg:'#ecfdf5'},wellness:{icon:'🧘',col:'#6d28d9',bg:'#fdf4ff'},technology:{icon:'⚙️',col:'#1d4ed8',bg:'#eff6ff'},creative:{icon:'✏️',col:'#854d0e',bg:'#fefce8'},cooking:{icon:'🍳',col:'#9a3412',bg:'#fff7ed'}};
+  return map[cat]||{icon:'🎯',col:'#d94f0a',bg:'#fff2ec'};
+}
+
+/* ════ POINTS ════ */
+function awardPoints(amount,reason){
+  if(!APP.user) return;
+  APP.user.points=(APP.user.points||0)+amount;
+  const pts=document.getElementById('wsPoints');
+  if(pts){ pts.textContent=APP.user.points; pts.style.transition='transform .3s'; pts.style.transform='scale(1.3)'; setTimeout(()=>pts.style.transform='scale(1)',300); }
+  saveUserProgress();
+}
+
+/* ════ AVATAR UPLOAD ════ */
+function triggerAvatarUpload(){ document.getElementById('avatarFileInput')?.click(); }
+function handleAvatarUpload(event){
+  const file=event.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const dataUrl=e.target.result;
+    APP.user.avatar=dataUrl;
+    const img=document.getElementById('wsProfileImg');
+    const init=document.getElementById('wsProfileInitials');
+    if(img){ img.src=dataUrl; img.style.display='block'; }
+    if(init) init.style.display='none';
+    const navAv=document.getElementById('wsAvatar');
+    const dropAv=document.getElementById('wsAvatarDrop');
+    if(navAv){ navAv.style.cssText+='background-image:url('+dataUrl+');background-size:cover;background-position:center'; navAv.textContent=''; }
+    if(dropAv){ dropAv.style.cssText+='background-image:url('+dataUrl+');background-size:cover;background-position:center'; dropAv.textContent=''; }
+    saveUserProgress(); awardPoints(20,'Profile photo added');
+    showToast('✅ Photo updated! +20 pts');
+  };
+  reader.readAsDataURL(file);
+}
+
+
 
 /* ════════════════ RENDER DASHBOARD ════════════════ */
 function renderDashboard(){
@@ -2980,7 +3191,7 @@ function renderDashboard(){
   const dsl = document.getElementById('dashSkillList');
   if(dsl){
     if(APP.skills.length === 0){
-      dsl.innerHTML = `<div class="empty-state"><div class="es-icon">📭</div><p>No skills listed yet. Add your first to start getting matched.</p><button class="btn primary btn-sm" onclick="openModal('mAddSkill')">+ Add a Skill</button></div>`;
+      dsl.innerHTML = `<div class="empty-state"><div class="es-icon">📭</div><p>No skills listed yet. Add your first to start getting matched.</p><button class="btn primary btn-sm" onclick="openModal('mAddSkill')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a Skill</span></button></div>`;
     } else {
       dsl.innerHTML = APP.skills.map((s,i)=>`
         <div class="ws-skill-row">
@@ -3075,7 +3286,7 @@ function renderMySkills(){
   }
 
   if(!html){
-    html = `<div class="empty-state"><div class="es-icon">🎯</div><p>No skills yet. Add your first skill to start getting matched.</p><button class="btn primary btn-sm" onclick="openModal('mAddSkill')">+ Add a Skill</button></div>`;
+    html = `<div class="empty-state"><div class="es-icon">🎯</div><p>No skills yet. Add your first skill to start getting matched.</p><button class="btn primary btn-sm" onclick="openModal('mAddSkill')"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a Skill</span></button></div>`;
   }
 
   el.innerHTML = html;
@@ -3144,6 +3355,7 @@ function requestSwap(skillKey, partnerName){
   showToast('✓ Swap request sent to ' + partnerName + '!');
   NOTIFICATIONS.unshift({id:Date.now(), icon:'🤝', text:'Swap request sent to '+partnerName, time:'Just now', read:false});
   renderNotifications();
+  awardPoints(25,'Swap requested');
 }
 
 function renderSwaps(){
@@ -3279,6 +3491,8 @@ function addSkill(){
   APP.skills.push({name, cat, desc, wants, level, format:fmt, icon:ci.icon, bg:ci.bg, col:ci.col, av:name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(), rating:'—', reviews:0});
   NOTIFICATIONS.unshift({id:Date.now(), icon:'🎯', text:'Skill added: '+name, time:'Just now', read:false});
   renderNotifications();
+  awardPoints(50,'New skill added');
+  showToast('✅ Skill added: '+name+' · +50 pts');
   renderMySkills(); renderDashboard(); renderMatches();
   closeModal('mAddSkill');
   showToast('✓ Skill added: '+name);
@@ -3554,14 +3768,10 @@ function doLogout(){
         </div>
         <h2>Welcome back</h2>
         <p>Sign in to your admin dashboard</p>
-        <div class="adm-field"><label>Username</label><input type="text" id="adm-user" placeholder="admin" onkeydown="if(event.key==='Enter')doAdminLogin()" /></div>
-        <div class="adm-field"><label>Password</label><input type="password" id="adm-pass" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doAdminLogin()" /></div>
-        <button class="adm-login-btn" onclick="doAdminLogin()">Sign In →</button>
-        <div class="adm-login-hint">
-          <div class="adm-login-hint-lbl">Demo credentials</div>
-          <div class="adm-login-hint-val">admin / admin123</div>
-        </div>
-        <a class="adm-login-back" onclick="goLanding()">← Back to SkillSwap</a>
+        <div class="adm-field"><label>Username</label><input type="text" id="adm-user" placeholder="Enter username" onkeydown="if(event.key==='Enter')doAdminLogin()" autocomplete="username" /></div>
+        <div class="adm-field"><label>Password</label><input type="password" id="adm-pass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doAdminLogin()" autocomplete="current-password" /></div>
+        <button class="adm-login-btn" onclick="doAdminLogin()"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In</span></button>
+                <a class="adm-login-back" onclick="goLanding()">← Back to SkillSwap</a>
       </div>
 
       <!-- Footer bar pinned under the card -->
@@ -3607,7 +3817,7 @@ function doLogout(){
 
         <!-- Bottom bar -->
         <div style="display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,.04)">
-          <div style="font-size:.74rem;color:#1e293b">© 2026 SkillSwap · Built with knowledge, not capital</div>
+          <a onclick="goAdmin()" style="font-size:.74rem;color:#334155;cursor:pointer;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#334155'">© 2026 SkillSwap · Built with knowledge, not capital</a>
           <div style="display:flex;gap:8px">
             <a onclick="showToast('Following on X…')" style="width:30px;height:30px;border-radius:6px;border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:600;color:#334155;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(34,211,238,.3)';this.style.color='#22d3ee'" onmouseout="this.style.borderColor='rgba(255,255,255,.06)';this.style.color='#334155'">𝕏</a>
             <a onclick="showToast('Opening LinkedIn…')" style="width:30px;height:30px;border-radius:6px;border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:600;color:#334155;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(34,211,238,.3)';this.style.color='#22d3ee'" onmouseout="this.style.borderColor='rgba(255,255,255,.06)';this.style.color='#334155'">in</a>
@@ -3692,6 +3902,12 @@ function doLogout(){
 
         <div class="adm-nav-section">
           <span class="adm-nav-label">System</span>
+          <div class="adm-nav-item" onclick="admNav('account',this)">
+            <div class="sb-nav-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="adm-label">My Account</span>
+          </div>
           <div class="adm-nav-item" onclick="admNav('settings',this)">
             <div class="sb-nav-icon-wrap">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -4033,6 +4249,76 @@ function doLogout(){
         </div>
       </div>
 
+      <!-- ── MY ACCOUNT ── -->
+      <div class="adm-body" id="adm-account">
+        <div style="margin-bottom:24px">
+          <h2 style="font-family:'Playfair Display',serif;font-weight:800;font-size:1.5rem;color:#e2e8f0;letter-spacing:-.02em;margin-bottom:4px">My Account</h2>
+          <p style="font-size:.84rem;color:#475569">Update your admin username and password here.</p>
+        </div>
+
+        <div style="max-width:480px">
+          <div class="adm-card" style="border:1px solid rgba(59,130,246,.2)">
+
+            <!-- Current account display -->
+            <div style="display:flex;align-items:center;gap:14px;padding:16px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12);border-radius:10px;margin-bottom:24px">
+              <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#22d3ee);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;box-shadow:0 0 18px rgba(34,211,238,.3);flex-shrink:0" id="accAvatarLg">A</div>
+              <div>
+                <div style="font-size:1rem;font-weight:700;color:#e2e8f0" id="accUsernameLg">admin</div>
+                <div style="font-size:.72rem;color:#22d3ee;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Super Admin</div>
+                <div style="font-size:.72rem;color:#334155;margin-top:4px" id="accLastChanged">Credentials never changed</div>
+              </div>
+            </div>
+
+            <!-- New username -->
+            <div style="margin-bottom:18px">
+              <label style="font-size:.72rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:6px;margin-bottom:8px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                New Username
+              </label>
+              <input class="adm-input" id="newAdmUser" placeholder="Enter new username" autocomplete="off" style="font-size:.95rem" />
+            </div>
+
+            <!-- Divider -->
+            <div style="height:1px;background:rgba(255,255,255,.06);margin:20px 0"></div>
+
+            <!-- New password -->
+            <div style="margin-bottom:14px">
+              <label style="font-size:.72rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:6px;margin-bottom:8px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                New Password
+              </label>
+              <div style="position:relative">
+                <input class="adm-input" type="password" id="newAdmPass" placeholder="Enter new password" autocomplete="new-password" style="font-size:.95rem;padding-right:44px" />
+                <button onclick="togglePwVis('newAdmPass',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer;color:#475569;font-size:.8rem;padding:4px" title="Show/hide"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+              </div>
+            </div>
+            <div style="margin-bottom:22px">
+              <label style="font-size:.72rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:6px;margin-bottom:8px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Confirm New Password
+              </label>
+              <div style="position:relative">
+                <input class="adm-input" type="password" id="confAdmPass" placeholder="Repeat new password" autocomplete="new-password" style="font-size:.95rem;padding-right:44px" />
+                <button onclick="togglePwVis('confAdmPass',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer;color:#475569;font-size:.8rem;padding:4px" title="Show/hide"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+              </div>
+            </div>
+
+            <!-- Inline message -->
+            <div id="credMsg" style="display:none;font-size:.82rem;padding:10px 14px;border-radius:8px;margin-bottom:14px"></div>
+
+            <!-- Submit -->
+            <button class="adm-btn" style="width:100%;padding:13px;font-size:.9rem;display:flex;align-items:center;justify-content:center;gap:8px" onclick="changeAdmCreds()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Update Credentials
+            </button>
+
+            <p style="font-size:.74rem;color:#334155;margin-top:14px;text-align:center;line-height:1.6">
+              Leave a field blank to keep it unchanged.<br>You will need to use new credentials on your next login.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- ── SETTINGS ── -->
       <div class="adm-body" id="adm-settings">
 
@@ -4181,7 +4467,12 @@ function doLogout(){
 
 <script>
 /* ─── ADMIN CREDENTIALS (changeable) ─── */
+/* ── Load saved credentials, or prompt setup on first login ── */
 let ADM_CREDS = { user: 'admin', pass: 'admin123' };
+(function(){
+  const saved = localStorage.getItem('ss_adm_creds');
+  if(saved){ try{ const c=JSON.parse(saved); if(c.user&&c.pass) ADM_CREDS=c; }catch(e){} }
+})();
 
 function doAdminLogin(){
   const u = document.getElementById('adm-user').value.trim();
@@ -4218,7 +4509,7 @@ function doAdminLogin(){
     setInterval(()=>{ renderAdminUsers(); updateAdmStats(); }, 30000);
   } else {
     document.getElementById('adm-pass').style.borderColor = '#ef4444';
-    showToast('⚠ Wrong credentials. Try: ' + ADM_CREDS.user + ' / ' + ADM_CREDS.pass);
+    showToast('⚠ Incorrect username or password.');
     setTimeout(()=>{ document.getElementById('adm-pass').style.borderColor=''; }, 2000);
   }
 }
@@ -4300,6 +4591,7 @@ function changeAdmCreds(){
 
   // Persist to localStorage
   localStorage.setItem('ss_adm_creds', JSON.stringify(ADM_CREDS));
+  localStorage.setItem('ss_adm_last_changed', new Date().toISOString());
 
   // Clear fields
   document.getElementById('newAdmUser').value = '';
@@ -4317,6 +4609,7 @@ function changeAdmCreds(){
   if(sa) sa.textContent = ADM_CREDS.user[0].toUpperCase();
 
   showCredMsg('✓ Credentials updated! New login: ' + ADM_CREDS.user,'success');
+  refreshAccountPanel();
   setTimeout(()=>{ const m=document.getElementById('credMsg'); if(m)m.style.display='none'; },3000);
 }
 
@@ -4368,30 +4661,30 @@ function refreshSettingsStats(){
   if(sc) sc.textContent = subs.length;
 }
 
-// Auto-load credentials from localStorage on admin login
-function loadSavedCreds(){
-  const saved = localStorage.getItem('ss_adm_creds');
-  if(saved){
-    try { const c = JSON.parse(saved); if(c.user&&c.pass) ADM_CREDS=c; } catch(e){}
-  }
-}
-loadSavedCreds();
-
 function admNav(id, el){
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   if(el) el.classList.add('active');
   document.querySelectorAll('.adm-body').forEach(b=>b.classList.remove('active'));
   document.getElementById('adm-'+id).classList.add('active');
-  const titles={overview:'Overview',media:'Media Library',skills:'Skill Manager',users:'Users',announcements:'Announcements',settings:'Control Centre'};
+  const titles={overview:'Overview',media:'Media Library',skills:'Skill Manager',users:'Users',announcements:'Announcements',settings:'Control Centre',account:'My Account'};
   document.getElementById('admPageTitle').textContent = titles[id]||id;
-  // Refresh settings stats when panel opens
-  if(id==='settings'){
-    refreshSettingsStats();
-    const su = document.getElementById('settingsUsername');
-    const sa = document.getElementById('settingsAvatar');
-    if(su) su.textContent = ADM_CREDS.user;
-    if(sa) sa.textContent = ADM_CREDS.user[0].toUpperCase();
-  }
+  if(id==='settings'){ refreshSettingsStats(); const su=document.getElementById('settingsUsername'); const sa=document.getElementById('settingsAvatar'); if(su) su.textContent=ADM_CREDS.user; if(sa) sa.textContent=ADM_CREDS.user[0].toUpperCase(); }
+  if(id==='account'){ refreshAccountPanel(); }
+}
+
+function refreshAccountPanel(){
+  const av=document.getElementById('accAvatarLg'); if(av) av.textContent=ADM_CREDS.user[0].toUpperCase();
+  const nm=document.getElementById('accUsernameLg'); if(nm) nm.textContent=ADM_CREDS.user;
+  const lc=document.getElementById('accLastChanged');
+  const saved=localStorage.getItem('ss_adm_last_changed');
+  if(lc) lc.textContent=saved?'Last changed: '+new Date(saved).toLocaleDateString('en',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'Credentials never changed';
+}
+
+function togglePwVis(inputId, btn){
+  const inp=document.getElementById(inputId);
+  if(!inp) return;
+  if(inp.type==='password'){ inp.type='text'; btn.textContent='🙈'; }
+  else { inp.type='password'; btn.textContent='👁'; }
 }
 
 /* ─── SKILL SELECTOR ─── */
